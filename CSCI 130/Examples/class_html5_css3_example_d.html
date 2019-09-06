@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Web Programming CSci 130 - HTML5 CSS</title>
+
+<style>
+
+
+ul.v1 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* vertical navigation bar */
+li a {
+    display: block;
+    width: 60px;
+}
+
+
+ul.v2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 60px;
+} 
+
+li.v2 a {
+    display: block;
+}
+
+
+ul.v3 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 500px;
+    background-color: #f1f1f1;
+}
+
+li.v3 a.v3 {
+    display: block;
+    color: #000;
+    padding: 40px 50px;
+    text-decoration: none;
+}
+
+/* to let the user know which page he/she is on */
+li.v3 a.v3active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Change the link color on hover */
+li.v3 a.v3:hover {
+    background-color: #555;
+    color: white;
+}
+
+
+ul.v4 {
+    border: 5px solid #f00;
+}
+
+li.v4 {
+    text-align: center;
+    border-bottom: 2px solid #00f;
+}
+
+li.v4:first-child {
+    border-bottom: none;
+}
+
+
+
+
+ul.v6 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: #f1f1f1;
+    height: 100%; /* Full height */
+    position: fixed; /* Make it stick, even on scroll */
+    overflow: auto; /* Enable scrolling if the sidenav has too much content */
+}
+
+
+
+
+ul.v7 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li.v7 {
+    display: inline;
+}
+
+
+ul.v8 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li.v8 {
+    float: right;
+}
+
+li.v8 a.v8 {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 50px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li.v8 a.v8:hover {
+    background-color: #111;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<ul class="v1">
+  <li><a href="default.html">Home</a></li>
+  <li><a href="news.html">News</a></li>
+  <li><a href="contact.html">Contact</a></li>
+  <li><a href="about.html">About</a></li>
+</ul>
+
+<hr>
+
+<ul class="v2">
+  <li class="v2"><a href="default.html">Home</a></li>
+  <li class="v2"><a href="news.html">News</a></li>
+  <li class="v2"><a href="contact.html">Contact</a></li>
+  <li class="v2"><a href="about.html">About</a></li>
+</ul>
+
+<hr>
+
+<ul class="v3">
+  <li class="v3"><a class="v3active" href="default.html">Home</a></li>
+  <li class="v3"><a class="v3" href="news.html">News</a></li>
+  <li class="v3"><a class="v3" href="contact.html">Contact</a></li>
+  <li class="v3"><a class="v3" href="about.html">About</a></li>
+</ul>
+
+<hr>
+
+<ul class="v4">
+  <li class="v4"><a class="v3active" href="default.html">Home</a></li>
+  <li class="v4"><a class="v3" href="news.html">News</a></li>
+  <li class="v4"><a class="v3" href="contact.html">Contact</a></li>
+  <li class="v4"><a class="v3" href="about.html">About</a></li>
+</ul>
+
+<hr>
+
+<ul class="v8">
+  <li class="v8"><a class="v8" href="default.html">Home</a></li>
+  <li class="v8"><a class="v8" href="news.html">News</a></li>
+  <li class="v8"><a class="v8" href="contact.html">Contact</a></li>
+  <li class="v8"><a class="v8" href="about.html">About</a></li>
+</ul>
+
+<hr>
+
+
+</body>
+</html>
