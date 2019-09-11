@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Face</title>
+</head>
+
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50vw;
+        /* height: 50vh; */
+    }
+
+    .zoom {
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* background-color: green; */
+        transition: transform .2s;
+        /* Animation */
+        width: 100vw;
+        height: 100vh;
+        /* margin: 0 auto; */
+    }
+
+    .zoom:hover {
+        transform: scale(1.2);
+        transition-duration: .5s;
+        /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+</style>
+
+<body>
+    <div class="center" style="text-align: center;">
+        <img class="center" src="./Smiley.jpg">
+        <div class="zoom">
+            <img src="eye1.png" style="width: 120px; height: 150px; position: absolute; top: 160px; left: 475px;">
+            <img src="eye2.png" style="width: 120px; height: 150px; position: absolute; top: 160px; left: 660px;">
+        </div>
+    </div>
+</body>
+
+</html>
