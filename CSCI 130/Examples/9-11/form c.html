@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> A page with some forms </title>
+
+
+</head>
+
+<body>
+
+<form method="post" action="page01.html">
+<fieldset>
+<h2 class="account">Account</h2>
+<ul>
+
+
+<li>
+<label for="email">Email:</label>
+<input type="email" id="email" name="email" class="large" />
+</li>
+<li>
+<label for="web_site">Web:</label>
+<input type="url" id="web_site" name="web_site" class="large" />
+<p class="instructions">Have a homepage, Please put the address here.</p>
+</li>
+<li>
+<label for="phone">Phone:</label>
+<input type="tel" id="phone" name="phone" placeholder="xxx-xxx-xxxx" class="large" pattern="\d{3}-\d{3}-\d{4}" />
+</li>
+
+</form>
+
+
+
+<fieldset>
+<h2 class="account">Account</h2>
+<ul>
+<li>
+<label for="first_name">First Name:</label>
+<input type="text" id="first_name" name="first_name" class="large" />
+</li>
+<li>
+<label for="last_name">Last Name: </label> 
+<input type="text" id="last_name" name="last_name" class="large"/>
+</li>
+</ul>
+</fieldset>
+
+
+<fieldset class="radios">
+<ul>
+<li>
+<input type="radio" id="gender_male" name="gender" value="male" />
+<label for="gender_male">Male</label>
+</li>
+<li>
+<input type="radio" id="gender_female" name="gender" value="female" />
+<label for="gender_female">Female</label>
+</li>
+</ul>
+</fieldset>
+
+
+<label for="state">State:</label>
+<select id="state" name="state">
+	<option value="AL">Alabama</option>
+	<option value="AK">Alaska</option>
+	<option value="AZ">Arizona</option>
+	...
+	<option value="CA" selected="selected">California</option>
+</select>
+
+
+<select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="vw">VW</option>
+  <option value="audi" selected>Audi</option>
+</select>
+
+
+
+<label for="referral">Where did you find out about us?</label>
+<select id="referral" name="referral">
+	<optgroup label="On-line">
+		<option value="social_network">Social Network</option>
+		<option value="search_engine">Search Engine</option>
+	</optgroup>
+	<optgroup label="Off-line">
+		<option value="postcard">Postcard </option>
+		<option value="word_of_mouth">Word of Mouth</option>
+	</optgroup>
+</select>
+
+
+<ul class="checkboxes">
+<li>
+<input type="checkbox" id="email_ok_msg_from_users" name="email_signup" value="user_emails" />
+<label for="email_ok_msg_from_users">You can email me with messages from other users.</label>
+</li>
+<li>
+<input type="checkbox" id="email_ok_occasional_updates" name="email_signup" value="occasional_updates" />
+<label for="email_ok_occasional_updates">You can email me about our other products.</label>
+</li>
+</ul>
+
+
+<label for="bodyemail">Body of email:</label>
+<textarea id="bodyemail" name="body_email" rows="12" cols="50" class="large"></textarea>
+
+<hr>
+
+<form method="post" action="showform.php" enctype="multipart/form-data">
+<label for="picture">Picture:</label>
+<input type="file" id="picture" name="picture" />
+<p class="instructions">Maximum size of 800k. (JPG, GIF, PNG).</p>
+</form>
+
+
+<hr>
+
+<form method="post" action="whatever.php">
+<input type="hidden" name="name" value="<?= $name ?>" />
+<input type="submit" value="submit data" />
+
+
+<input type="submit" class="create_profile" value="Create My Personal Account">
+
+
+</body>
+</html>
+
+
