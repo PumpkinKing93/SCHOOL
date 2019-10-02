@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CSci130 - Web Programming - removeAttr demo</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+	<button>Change title</button>
+	<input type="text" title="hello there">
+	<!-- title attribute specifies extra information about an element -->
+	<div id="log"></div>
+	<script>
+		(function() {
+		  var inputTitle = $( "input" ).attr( "title" );
+		  alert(inputTitle);
+		  $("button").click(function() {
+			var input=$(this).next();
+			if (input.attr("title")===inputTitle) {
+			  input.removeAttr("title");
+			   alert('Remove title');
+			} else {
+			  input.attr( "title", inputTitle );
+			  alert('Title:' + inputTitle);
+			}
+			$("#log").html( "input title is now " + input.attr( "title" ) );
+		  });
+		})();
+	</script>
+</body>
+</html>

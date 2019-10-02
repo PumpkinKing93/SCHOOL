@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CSci130 - Web Programming - attr demo</title>
+  <style>
+  p {
+    margin: 20px 0 0;
+  }
+  b {
+    color: blue;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<input id="mycheck1" type="checkbox" checked="checked"> <!-- Creation of a checkbox -->
+<label for="check1">Check me</label>
+<p></p>
+<script>
+// .attr : Get the value of an attribute for the first element in the set of matched elements or set one or more attributes for every matched element.
+// .prop : Get the value of a property for the first element in the set of matched elements or set one or more properties for every matched element.
+$("input")
+  .change(function() {
+    var $input = $(this);
+	// In the paragraph (there is only one that has been defined)
+	// change the html content inside this paragraph with
+	// 1) .attr('checked') and its corresponding value obtained from the input !
+	// 2) .prop( 'checked' ) 
+	// 3) .is( 'checked' )
+    $("p").html(".attr('checked'): <b>" + $input.attr("checked") + "</b><br>" +
+      ".prop( 'checked' ): <b>" + $input.prop( "checked" ) + "</b><br>" +
+      ".is( ':checked' ): <b>" + $input.is(":checked" ) + "</b>" );
+  })
+  .change();
+</script>
+</body>
+</html>
