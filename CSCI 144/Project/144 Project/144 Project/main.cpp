@@ -8,18 +8,28 @@
 
 #include <iostream>
 #include <thread>
+using namespace std;
+
+//classes
+
+//functions
+
 int main()
 {
-//	int x = 9;
-	std::thread threadObj([]{
-		for(int i = 0; i < 10000; i++)
-			std::cout<<"Display Thread Executing"<<std::endl;
+	//declare variables
+
+	//function calls
+	//	int x = 9;
+	thread threadObj([] {
+		for (int i = 0; i < 10000; i++)
+			cout << "Display Thread Executing" << endl;
 	});
-	
-	for(int i = 0; i < 10000; i++)
-		std::cout<<"Display From Main Thread"<<std::endl;
-	
+
+	for (int i = 0; i < 10000; i++)
+		cout << "Display From Main Thread" << endl;
+
 	threadObj.join();
-	std::cout<<"Exiting from Main Thread"<<std::endl;
+	cout << "Exiting from Main Thread" << endl;
+
 	return 0;
 }
