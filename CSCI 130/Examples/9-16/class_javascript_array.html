@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8" />
+<title>My page with Javascript (Lab session)</title>
+</head>
+<body>  
+
+
+<!-- My scripts for array in Javascript -->
+<script>
+
+// Declaration
+let arr = new Array();
+let arr = [];
+
+// Static array with different elements
+let people = ["Alfred", "Jim", "Alex"];
+
+// Access the elements
+let animals = ["Hamster", "Bear", "Fish"];
+
+alert(animals[0] ); // Hamster
+alert(animals[1] ); // Bear
+alert(animals[2] ); // Fish
+
+// When you have lots of array you may start the name of the variable with the type
+// aAnimals, vAnimals, a for array, or v for vector ...
+
+// If you add a new element, automatically the size of the array is increased!
+animals[10]='koala';
+// now you have 11 elements!!!
+// but some elements are not defined 
+
+// Get the number of elements
+let animals_size=animals.length; // no brackets!!
+
+// display the whole array ...
+// to not use with large arrays !
+alert(animals);
+
+
+// pop
+let fruits = ["Apple", "Orange", "Pear"];
+alert( fruits.pop() ); // remove "Pear" and alert it
+// push
+let fruits = ["Apple", "Orange"];
+fruits.push("Pear");
+alert( fruits ); // Apple, Orange, Pear
+
+
+// Iteration over elements
+let a = ["Apple", "Orange", "Pear"];
+for (let i = 0; i < a.length; i++) {
+  alert(a[i] );
+}
+
+let fruits = ["Apple", "Orange", "Plum"];
+// iterates over array elements
+for(let fruit of fruits) {
+  alert( fruit ); // access directly the value of the item
+}
+
+let a = ["Apple", "Orange", "Pear"];
+for (let key in a) {
+  alert( arr[key] ); // access the items by the key 
+}
+
+
+// Example of a matrix:
+let matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+
+let cell=matrix[2][2];
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>My page with Javascript (CSci 130)</title>
+</head>
+<body>
+<p>Example of script</p>
+<xxxx>
+
+var x=4;
+let y=6;
+
+let f0=function f1(a,b) {
+	let x=a;
+	let y=b;
+	let z=a*b;
+	alert(z); // 24
+	
+	var a=10;
+
+	// Note that g1 and g2 are defined in f1 !
+	function g1(b){
+	    // no need to declare a
+		b+=a;
+		return b;
+	}
+
+	function g2(b){  
+		var a=5;
+		b+=a;
+		return b; 
+	}
+	
+	function g3(b){  
+		a=5; // no clean declaration, still working
+		b+=a;
+		return b; 
+	}
+	
+	alert('g1:' + g1(5)); // 15
+	alert('g2:' + g2(5)); // 10
+	alert('g3:' + g3(5)); // 10
+}
+
+f0(x,y);
+// display the function:
+alert('f:' + f1);
+
+
+</xxxx>
+</body>
+</html>
+
+
+

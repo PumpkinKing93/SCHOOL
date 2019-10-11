@@ -1,0 +1,188 @@
+<!DOCTYPE html lang="en">
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>My page with Javascript and JSON (Lab session)</title>
+
+<style>
+html {
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+}
+
+body {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+h1, h2 {
+  font-family: 'Rockwell', cursive;
+}
+
+/*
+While em is relative to the font-size of its direct or nearest parent, 
+rem is only relative to the html (root) font-size !!
+*/
+
+/* header styles */
+h1 {
+  font-size: 4rem; 
+  text-align: center;
+}
+
+header p {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* section styles */
+section article {
+  width: 33%;
+  float: left;
+}
+section p {
+  margin: 5px 0;
+}
+section ul {
+  margin-top: 0;
+}
+h2 {
+  font-size: 2.5rem;
+  letter-spacing: -5px;
+  margin-bottom: 10px;
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- create the default structure of the html page we want
+so we can access the header and the section through the DOM directly
+There is a single header and a single section so there is no need to have an ID for each as there is a single instance for each
+-->
+
+<form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="post">
+  <fieldset>
+    <h2>JSON File</h2>
+     <input type='file' id='fileinput'>
+     <input type='button' id='btnLoad' value='Load' onclick='loadFile();'>
+  </fieldset>
+</form>
+
+<!-- the JSON example is taken from the mozilla website -->  
+
+<!-- The header and the section must be first defined otherwise it wont find it in the following javascript -->
+<header>
+</header>
+<section>
+</section>
+
+<script type="text/javascript">
+
+  var header = document.querySelector('header');
+  var section = document.querySelector('section');
+
+  // With this function we read the file locally !!!
+  // but later we will see how to get it from the server...but we will need a server first :D
+  // Here we use the special function from the window interface
+  // The Window interface is home to a variety of functions, namespaces, objects, and constructors,
+  //  which are not necessarily directly associated with the concept of a user interface window
+  function loadFile() {
+    var input, file, fr;
+
+    if (typeof window.FileReader !== 'function') {
+      alert("The file API isn't supported on this browser yet."); // It should not happen with your laptop
+      return;
+    }
+
+    input = document.getElementById('fileinput');
+    if (!input) {
+      alert("Could not find the file input element.");
+    }
+    else if (!input.files) {
+      alert("This browser does not seem to support the `files` property of file inputs.");
+    }
+    else if (!input.files[0]) {
+      alert("Please select a file before clicking 'Load'");
+    }
+    else {
+	  //files property:	Returns a FileList object that represents the file or files selected with the file upload button
+      file = input.files[0]; 
+      // The FileReader object lets web applications asynchronously read the contents of files (or raw data buffers) stored on the user's computer,
+      // using File or Blob objects to specify the file or data to read.	  
+      fr = new FileReader();
+	  
+	  // Here we re going to assigned a function to fr.onload !!! :O
+      fr.onload = receivedText; // onload property contains an event handler executed when the load event is fired
+      fr.readAsText(file); // readAsText method is used to read the contents of the specified
+	  // you can have: readAsArrayBuffer() readAsBinaryString() readAsDataURL() readAsText()
+    }
+
+    function receivedText(e) {
+      lines = e.target.result;  // target: A reference to the object that dispatched the event
+	  // parse the file and get the DOM object
+      var newArr = JSON.parse(lines);
+	  populateHeader(newArr); 
+	  showHeroes(newArr); 
+    }
+  }
+  
+// Access the nodes in the DOM and update based on the content of the jsonObject
+// If you reload the file, it will be added to the existing elements in the page !!!
+function populateHeader(jsonObj) {
+  var myH1 = document.createElement('h1');
+  myH1.textContent = jsonObj['squadName'];
+  header.appendChild(myH1);
+
+  var myPara = document.createElement('p');
+  myPara.textContent = 'Hometown: ' + jsonObj['homeTown'] + ' // Formed: ' + jsonObj['formed'];
+  header.appendChild(myPara);
+}
+
+// Parse the json object and create dynamically some HTML for its presentation
+function showHeroes(jsonObj) {
+  var heroes = jsonObj['members'];
+      
+  // For each heroe	  
+  for (var i = 0; i < heroes.length; i++) {
+    var myArticle = document.createElement('article');
+	// Create different DOM nodes that are placed in different variables
+    var myH2 = document.createElement('h2');
+    var myPara1 = document.createElement('p'); // paragraph
+    var myPara2 = document.createElement('p'); // paragraph
+    var myPara3 = document.createElement('p'); // paragraph
+    var myList = document.createElement('ul'); // unordered list
+
+	// Notice the property textContent to update the HTML content of a node 
+    myH2.textContent = heroes[i].name;
+    myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
+    myPara2.textContent = 'Age: ' + heroes[i].age;
+    myPara3.textContent = 'Superpowers: ';
+        
+	// Now we go for each superPower
+    var superPowers = heroes[i].powers;
+    for (var j = 0; j < superPowers.length; j++) {
+      var listItem = document.createElement('li'); // create an item in the list
+      listItem.textContent = superPowers[j]; // update the text in the item
+      myList.appendChild(listItem); // attach the item to the unordered list
+    }
+
+	// Attach the created DOM nodes to the node myArticle
+    myArticle.appendChild(myH2);
+    myArticle.appendChild(myPara1);
+    myArticle.appendChild(myPara2);
+    myArticle.appendChild(myPara3);
+    myArticle.appendChild(myList);
+	
+	// Attach the node myArticle to the section 
+    section.appendChild(myArticle);
+	
+	// At this stage all the DOM nodes are connected up to the root, there is no isolated island of nodes
+  }
+}
+  
+</script>
+
+</body>
+</html>

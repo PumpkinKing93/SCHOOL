@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8" />
+<title>My page with Javascript (CSci 130 - Web Programming)</title>
+</head>
+<body>  
+
+<!-- My scripts for array in Javascript -->
+<script>
+"use strict";
+
+let example=3;
+
+if (example==1) {
+	let arr1=[1,5,6,12];
+	let arr2=arr1.map(x => x**2);
+	for(let n of arr2) {
+	  alert(n); // access directly the value of the item
+	}
+}
+else if (example==2) {
+	let arr1=[1,5,6,12];
+	let arr2=arr1.map(function(num) { // same with a function
+			return num **2;
+	});
+	for(let n of arr2) {
+	  alert(n); // access directly the value of the item
+	}
+}
+else if (example==3) {
+	// combination map and filter
+	let arr = [1, 2, 3, 4, 5];
+	let arr2 = arr.map(num => num*2).filter(num => num > 5);
+	// arr2 = [6, 8, 10]
+	for (let i=0;i<arr2.length;i++) {  // for loop like in C++
+	  alert(arr2[i]); // access directly the value of the item
+	}
+}
+else if (example==4) {
+
+let kvArr1 = [{key:11, value: 100}, 
+               {key:21, value: 200}, 
+               {key:31, value: 300}];
+
+let kvArr2 = kvArr1.map(obj =>{ 
+   var rObj = {};
+   rObj[obj.key] = obj.value;
+   return rObj;
+});
+
+// a function to get the keys from the object
+var getKeys = function(obj){
+   var keys = [];
+   for(var key in obj){
+      keys.push(key);
+   }
+   return keys;
+}
+
+for(let n of kvArr2) {
+	  alert(n + ' ' + Object.keys(n) + ' ' + Object.values(n) ); // access directly the value of the item
+	}
+
+}
+
+</script>
+</body>
+</html>
