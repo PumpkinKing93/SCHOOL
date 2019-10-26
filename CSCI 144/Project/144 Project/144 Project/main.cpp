@@ -33,35 +33,120 @@
 //  Copyright © 2019 Tyler  Gillette. All rights reserved.
 //
 
-#include <iostream>
-#include <thread>	//be able to use threads keyword
+#include <iostream>	//get rid of the STD::
+#include <thread>		//be able to use threads keyword
 #include <fstream>	//write to a file
-#include <string>  //read from a file
+#include <string>  	//read from a file
+#include <vector> 	//use vectors
+#include <queue>		//create queues for directions
+#include <sstream>	//get individual chars from a string
 using namespace std;
 
-//classes
 
-//functions
-void readFile(){
-	string line;
-  ifstream myfile ("intersection.rtf");
-  if (myfile.is_open())
-  {
-    while ( getline (myfile,line) )
-    {
-      cout << line << '\n';
-    }
-    myfile.close();
-  }
+//======================================Global======================================//
+vector<int> headOfTraffic; //Stores the positions of the directions. If (0) then there are no cars. Otherwise, 1, 1st ... n, nth in line.
+vector<queue<clock_t> > allCarsQueue; //place to store ALL THE CARS, sorted by direction, and storing the cars' arrival times.
+vector<long double> carsPastIntersection; //analogous to a more broadly used timeDifferences in stopsign.cpp
+//======================================Global end======================================//
+
+
+//======================================Locks======================================//
+pthread_mutex_t carsLock = PTHREAD_MUTEX_INITIALIZER;
+mutex headOfTrafficLock;
+pthread_mutex_t carPastIntersectionLock = PTHREAD_MUTEX_INITIALIZER;
+//======================================Locks end======================================//
+
+
+//======================================classes======================================//
+
+//======================================classes end======================================//
+
+
+//======================================functions======================================//
+void readFile(int num, vector<pair<int,string>>  &cars){
+	//variables
+	int count = 0;		//counter
+	int n = 0;			//get the number
+	string dir;				//get the direction
+	string line;			//store each line
+	string file;			//file name
+	ifstream myfile;	//file
 	
+	//which file to use?
+	if(num == 1){
+  file = "easy.txt";
+	}
+	else if (num == 2){
+		file = "/medium.txt";
+	}
+	else if (num == 3){
+		file = "/hard.txt";
+	}
+	else exit(1);   // call system to stop
+	
+	
+	 myfile.open(file);	//open the file for use
+
+	
+	//check that file exists and opens
+  if (!myfile)
+  {
+		cerr << "Unable to open file" << endl;
+		exit(1);   // call system to stop
+	}
+	
+	
+	while (!myfile.eof())
+	{
+			getline(myfile, line);
+		stringstream ss(line);
+		
+		string token;
+		while(getline(ss, token, ' ')){
+			cars.push_back(token);
+			);
+			
+		if (count >= 500){
+			cerr << "file size to large. Must be less than 100 lines." << endl;
+			exit(1);   // call system to stop
+		}
+		count++;
+	}
+	myfile.close();
+
+	
+	return;
 }
 
+void printVector(vector<string> &vect){
+	for (auto i: vect)
+  cout << i << ' ';
+	return;
+}
+
+void stopLight(){
+	
+}
+//======================================functions end======================================//
+
+
+//======================================main======================================//
 int main()
 {
 	//declare variables
+	int fileNum = 0;
+	vector <pair<int, string>> cars;
+//	vector<string> cars;
+	
 
-	//function calls
-
+	//ask the user which file they want to use.
+	cout << "please select a file: " <<
+	endl << "  0: exit" <<
+	endl << "  1: easy" <<
+	endl << "  2: medium" <<
+	endl << "  3: hard" << endl;
+	cin >> fileNum;
+	
 //	thread threadObj([] {
 //		for (int i = 0; i < 10; i++)
 //			cout << "Display Thread Executing" << endl;
@@ -73,10 +158,13 @@ int main()
 //	threadObj.join();
 //	cout << "Exiting from Main Thread" << endl;
 
-	readFile();
+	//function calls
+	readFile(fileNum, cars);
+	printVector(cars);
 //	cout << "Thread creation" << endl;
 //	cout << "Direction ID # car arrived intersection (e.g., West #3 car arrived)" << endl;
 //	cout << "Direction ID # car left intersection (e.g., West #3 car left intersection)" << endl;
 	
 	return 0;
 }
+//======================================main end======================================//

@@ -34,15 +34,15 @@ public:
 	long double max;
 
 	statistics(
-				long double mean,
-				long double median,
-				long double min,
-				long double max)
+		long double mean,
+		long double median,
+		long double min,
+		long double max)
 	{
-		this->mean=mean;
-		this->median=median;
-		this->min=min;
-		this->max=max;
+		this->mean = mean;
+		this->median = median;
+		this->min = min;
+		this->max = max;
 	}
 };
 
@@ -53,14 +53,8 @@ public:
 	int direction;
 	std::vector<double> contents;
 	bool verbose;
-	/*argument(int sz, double cont[]){
-		size = sz;
-		for (int i=0; i<size;i++)
-			contents[i]=cont[i];
-	};*/
 };
 
 statistics stopsign(int numDirections, double simulationLength, double **workLoad, bool verbose);
-
 
 #endif /* STOPSIGN_H_ */
