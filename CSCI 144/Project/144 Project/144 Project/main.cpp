@@ -95,16 +95,27 @@ void readFile(int num, vector<pair<int,string>>  &cars){
 		exit(1);   // call system to stop
 	}
 	
+	//added
+	// initialising 1st and 2nd element of
+		 // pairs with array values
+		 int time[] = {};
+		 string dir[] = {};
+		 int n = sizeof(time)/sizeof(time[0]);
+	 
+		 // Entering values in vector of pairs
+		 for (int i=0; i<n; i++)
+				 vect.push_back( make_pair(arr[i],arr1[i]) );
+//end of add
 	
 	while (!myfile.eof())
 	{
-			getline(myfile, line);
+		getline(myfile, line);
 		stringstream ss(line);
 		
 		string token;
 		while(getline(ss, token, ' ')){
 			cars.push_back(token);
-			);
+		};
 			
 		if (count >= 500){
 			cerr << "file size to large. Must be less than 100 lines." << endl;
