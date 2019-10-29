@@ -1,0 +1,146 @@
+%2B
+declare
+local X in
+    if {Label X} == Lab then 
+       if {Arity X} == [F1...Fn] then
+	  local X1...Xn in
+	     X1 = X.F1
+	     Xn = X.Fn
+	     S1
+	  else S2
+	  end
+       else S2
+       end
+	       
+	  
+%2C
+declare L
+L = lab(f1:5 f2:7 f3:'jim')
+
+if {Label L} == lab then
+   if {Arity L} == [f1 f2 f3] then
+      local X Y Z in
+	 X = L.f1
+	 Y = L.f2
+	 Z = L.f3
+      if L.f1 == 5 then {Browse Y}
+      else {Browse a} end
+      end
+    else {Browse b} end
+else {Browse b} end 
+
+
+%3
+declare
+proc {Test X} 
+  case X
+  of a|Z then {Browse  'case (1)'}
+  [] f(a) then {Browse  'case (2)'}
+  [] Y|Z andthen Y==Z then {Browse  'case (3)'} 
+  [] Y|Z then {Browse  'case (4)'}
+  [] f(Y) then {Browse  'case (5)'}
+  else {Browse  'case (6)'} end
+end
+
+{Test [b c a]}      %case 4
+{Test f(b(3))}      %case 5   
+{Test f(a)}         %case 2
+{Test f(a(3))}      %case 5
+{Test f(d)}         %case 5
+{Test [a b c]}      %case 1
+{Test [c a b]}      %case 4
+{Test a|a}          %case 1
+{Test  ́| ́(a b c)} %case 1
+
+%4A
+declare X Y
+{Test f(X b Y)} %case 6 (Correct)
+
+declare X Y
+{Test f(a Y d)} %case 6 (Correct)
+
+declare X Y
+{Test f(X Y d)} %case 6 (Correct)
+
+%4B
+declare X Y
+proc {Test X}
+if f(X Y d)==f(a Y c) then {Browse 'case (1)'} 
+else {Browse 'case (2)'} end end
+
+/*
+   
+It will be case 2 because the f(X Y d) does not match f(a Y c) because a is an atom and X is 
+Unbound, Y is unbound and will match with Y, d does not equal c.
+
+*/
+						       
+%5
+declare Max3 Max5
+  proc {SpecialMax Value ?SMax}
+    fun {SMax X}
+      if X>Value then X else Value end
+  end 
+end
+{SpecialMax 3 Max3} 
+  {SpecialMax 5 Max5}
+
+{Browse [{Max3 4} {Max5 4}]}
+
+  /*
+
+The ? Should let you pass in any function.
+It looks like the max3 and max5 are testing if the value X passed in is greater than 
+The number in the function name.
+If the number 4 is greater than 3 then it will print 4 else 3.
+If the number 4 is greater than 5 it will print 4 else 5.
+
+So I believe it will print [4 5], because it is wrapped in a list.
+
+    
+*/
+					       
+%6
+declare
+fun {SMerge Xs Ys} 
+  case Xs#Ys
+  of nil#Ys then Ys
+  [] Xs#nil then Xs
+  [] (X|Xr)#(Y|Yr) then
+    if X=<Y then 
+      X|{SMerge Xr Ys}
+    else
+      Y|{SMerge Xs Yr}
+    end 
+  end
+end
+
+% e.g.
+{Browse {SMerge [1 2 3] [1 2 3]}}
+
+
+declare SMerge
+SMerge = proc {$ Xs Ys ?S}
+	    case Xs of nil then S = Ys
+	    else
+	       case Ys of nil then S = Xs
+	       else case Xs of X|Xr then
+		       case Ys of Y|Yr then
+			  if X=<Y then
+			     local Mid in
+				S = X|Mid
+				{SMerge Xr Ys Mid}
+			     end
+			  else
+			     local Mid in
+				S = Y|Mid
+				{SMerge Xs Yr Mid}
+			     end
+			  end
+		       end
+		    end
+	       end
+	    end
+	 end
+
+	    

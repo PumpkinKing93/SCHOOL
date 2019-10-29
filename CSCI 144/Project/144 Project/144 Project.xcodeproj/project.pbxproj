@@ -8,23 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		1A7DCD50233036E9002AB01C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DCD4F233036E9002AB01C /* main.cpp */; };
+		1AF60C0E23638B8E008EA237 /* hard.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AF60C0323637AD1008EA237 /* hard.txt */; };
+		1AF60C0F23638B8E008EA237 /* medium.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AF60C0423637AD2008EA237 /* medium.txt */; };
+		1AF60C1023638B8E008EA237 /* easy.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AF60C0223637AD0008EA237 /* easy.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1A7DCD4A233036E9002AB01C /* CopyFiles */ = {
+		1AF60C0D23638B74008EA237 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
+				1AF60C0E23638B8E008EA237 /* hard.txt in CopyFiles */,
+				1AF60C0F23638B8E008EA237 /* medium.txt in CopyFiles */,
+				1AF60C1023638B8E008EA237 /* easy.txt in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1A7DCD4C233036E9002AB01C /* 144 Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "144 Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7DCD4F233036E9002AB01C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1AF60C0223637AD0008EA237 /* easy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy.txt; sourceTree = "<group>"; };
+		1AF60C0323637AD1008EA237 /* hard.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hard.txt; sourceTree = "<group>"; };
+		1AF60C0423637AD2008EA237 /* medium.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = medium.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +52,7 @@
 			children = (
 				1A7DCD4E233036E9002AB01C /* 144 Project */,
 				1A7DCD4D233036E9002AB01C /* Products */,
+				1AF60C0623638A59008EA237 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,9 +67,19 @@
 		1A7DCD4E233036E9002AB01C /* 144 Project */ = {
 			isa = PBXGroup;
 			children = (
+				1AF60C0323637AD1008EA237 /* hard.txt */,
+				1AF60C0423637AD2008EA237 /* medium.txt */,
+				1AF60C0223637AD0008EA237 /* easy.txt */,
 				1A7DCD4F233036E9002AB01C /* main.cpp */,
 			);
 			path = "144 Project";
+			sourceTree = "<group>";
+		};
+		1AF60C0623638A59008EA237 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,7 +91,7 @@
 			buildPhases = (
 				1A7DCD48233036E9002AB01C /* Sources */,
 				1A7DCD49233036E9002AB01C /* Frameworks */,
-				1A7DCD4A233036E9002AB01C /* CopyFiles */,
+				1AF60C0D23638B74008EA237 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -88,7 +108,7 @@
 		1A7DCD44233036E9002AB01C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Tyler  Gillette";
 				TargetAttributes = {
 					1A7DCD4B233036E9002AB01C = {
@@ -102,6 +122,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 1A7DCD43233036E9002AB01C;
 			productRefGroup = 1A7DCD4D233036E9002AB01C /* Products */;
@@ -239,6 +260,7 @@
 		1A7DCD54233036E9002AB01C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2K227TGJ93;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -248,6 +270,7 @@
 		1A7DCD55233036E9002AB01C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2K227TGJ93;
 				PRODUCT_NAME = "$(TARGET_NAME)";

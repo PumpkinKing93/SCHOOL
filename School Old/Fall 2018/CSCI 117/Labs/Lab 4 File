@@ -1,0 +1,53 @@
+%1
+
+%2a
+
+/* 
+local Sum1 in 
+Sum1 = proc{$ N ?A}
+  local C in
+  C = (N==0)
+        if C then A = 0
+            else
+                local Ans in
+                    local N1 in
+                        N1 = N - 1
+                        {Sum1 N1 Ans}
+                        A = N1 + Ans
+                    end
+                end
+            end
+        end
+   end
+end
+
+
+
+
+local Sum2 in
+Sum2 = proc($ N S ?A)
+    local D in
+    D = (N == 0)
+         if D then D = S
+              else
+                   local B1 in    
+                     local B2 in 
+                        B1 = N - 1
+                        B2 = N + S
+                        {Sum2 B1 B2 A}
+                    end
+                end
+            end
+        end
+   end
+end 
+*/
+
+
+%2b
+
+%2c
+
+%3
+
+%4
