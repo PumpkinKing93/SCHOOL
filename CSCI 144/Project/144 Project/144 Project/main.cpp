@@ -63,14 +63,15 @@ pthread_mutex_t carPastIntersectionLock = PTHREAD_MUTEX_INITIALIZER;
 
 
 //======================================functions======================================//
-void readFile(int num, vector<pair<int,string>>  &cars){
+void readFile(int num, vector<char>  &cars){
 	//variables
 	int count = 0;		//counter
-	int n = 0;			//get the number
 	string dir;				//get the direction
 	string line;			//store each line
 	string file;			//file name
+	char ch;
 	ifstream myfile;	//file
+	void samp[2];
 	
 	//which file to use?
 	if(num == 1){
@@ -95,30 +96,21 @@ void readFile(int num, vector<pair<int,string>>  &cars){
 		exit(1);   // call system to stop
 	}
 	
-	//added
-	// initialising 1st and 2nd element of
-		 // pairs with array values
-		 int time[] = {};
-		 string dir[] = {};
-		 int n = sizeof(time)/sizeof(time[0]);
-	 
-		 // Entering values in vector of pairs
-		 for (int i=0; i<n; i++)
-				 vect.push_back( make_pair(arr[i],arr1[i]) );
-//end of add
 	
 	while (!myfile.eof())
 	{
 		getline(myfile, line);
-		stringstream ss(line);
 		
-		string token;
-		while(getline(ss, token, ' ')){
-			cars.push_back(token);
-		};
+		
+//		>> noskipws
+		while (myfile >> ch) {
+			if (ch == [1-9])
+				cars.push_back(ch);
+		}
+//			cars.push_back(line);
 			
-		if (count >= 500){
-			cerr << "file size to large. Must be less than 100 lines." << endl;
+		if (count >= 5000){
+			cerr << "file size to large. Must be less than 5000 lines." << endl;
 			exit(1);   // call system to stop
 		}
 		count++;
@@ -129,14 +121,24 @@ void readFile(int num, vector<pair<int,string>>  &cars){
 	return;
 }
 
-void printVector(vector<string> &vect){
+void printVector(vector<char> &vect){
 	for (auto i: vect)
-  cout << i << ' ';
+  cout << i << endl;
+//	cout << i << ' ';
 	return;
 }
 
 void stopLight(){
+		thread threadObj([] {
+			for (int i = 0; i < 10; i++)
+				cout << "Thread creation: " << i << endl;
+		});
 	
+		for (int i = 0; i < 10; i++)
+			cout << "Display From Main Thread" << endl;
+	
+		threadObj.join();
+		cout << "Exiting from Main Thread" << endl;
 }
 //======================================functions end======================================//
 
@@ -146,7 +148,7 @@ int main()
 {
 	//declare variables
 	int fileNum = 0;
-	vector <pair<int, string>> cars;
+	vector <char> cars;
 //	vector<string> cars;
 	
 
@@ -158,21 +160,11 @@ int main()
 	endl << "  3: hard" << endl;
 	cin >> fileNum;
 	
-//	thread threadObj([] {
-//		for (int i = 0; i < 10; i++)
-//			cout << "Display Thread Executing" << endl;
-//	});
-//
-//	for (int i = 0; i < 10; i++)
-//		cout << "Display From Main Thread" << endl;
-//
-//	threadObj.join();
-//	cout << "Exiting from Main Thread" << endl;
+
 
 	//function calls
 	readFile(fileNum, cars);
 	printVector(cars);
-//	cout << "Thread creation" << endl;
 //	cout << "Direction ID # car arrived intersection (e.g., West #3 car arrived)" << endl;
 //	cout << "Direction ID # car left intersection (e.g., West #3 car left intersection)" << endl;
 	
