@@ -22,13 +22,33 @@ class Student {
         
 	}
  
-	function getName() {
-		return $this->name;
+	function getFirstName() {
+		return $this->firstName;
 	}
- 
-	function isAdult() {
-		return $this->age >= 18?"an Adult":"Not an Adult";
-	}
+    
+    function getLastName() {
+		return $this->lastName;
+    }
+    
+    function getAddress() {
+		return $this->address;
+    }
+
+    function getBorn() {
+		return $this->born;
+    }
+
+    function getIDNum() {
+		return $this->idNum;
+    }
+
+    function getGPA() {
+		return $this->gpa;
+    }
+
+    function getNOU() {
+		return $this->numberOfUnits;
+    }
  
 }
 
