@@ -71,7 +71,7 @@ void readFile(int num, vector<char>  &cars){
 	string file;			//file name
 	char ch;
 	ifstream myfile;	//file
-	void samp[2];
+	string samp[2];
 	
 	//which file to use?
 	if(num == 1){
@@ -104,7 +104,7 @@ void readFile(int num, vector<char>  &cars){
 		
 //		>> noskipws
 		while (myfile >> ch) {
-			if (ch == [1-9])
+			//if (ch == [1-9])
 				cars.push_back(ch);
 		}
 //			cars.push_back(line);
