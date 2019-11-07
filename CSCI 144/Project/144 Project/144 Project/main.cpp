@@ -63,25 +63,26 @@ pthread_mutex_t carPastIntersectionLock = PTHREAD_MUTEX_INITIALIZER;
 
 
 //======================================functions======================================//
-void readFile(int num, vector<char>  &cars){
+void readFile(int num, vector<string> &carTime, vector<string> &carDir
+){
 	//variables
 	int count = 0;		//counter
 	string dir;				//get the direction
 	string line;			//store each line
 	string file;			//file name
-	char ch;
 	ifstream myfile;	//file
-	string samp[2];
+//	char ch;
+//	int time;
 	
 	//which file to use?
 	if(num == 1){
   file = "easy.txt";
 	}
 	else if (num == 2){
-		file = "/medium.txt";
+		file = "medium.txt";
 	}
 	else if (num == 3){
-		file = "/hard.txt";
+		file = "hard.txt";
 	}
 	else exit(1);   // call system to stop
 	
@@ -96,32 +97,42 @@ void readFile(int num, vector<char>  &cars){
 		exit(1);   // call system to stop
 	}
 	
-	
-	while (!myfile.eof())
-	{
-		getline(myfile, line);
+			while (getline (myfile,line)){
+				
+					size_t index = line.find(" ");
+					string interval = line.substr(0,index);
+					string direction = line.substr(index+1);
+				
+//					cout << direction << endl;
+//    			cout << line << '\n';
+					carTime.push_back(interval);
+					carDir.push_back(direction);
+				
+				if (count >= 5000){
+					cerr << "file size to large. Must be less than 5000 lines." << endl;
+					exit(1);   // call system to stop
+				}
+				count++;
+			}
 		
-		
-//		>> noskipws
-		while (myfile >> ch) {
-			//if (ch == [1-9])
-				cars.push_back(ch);
-		}
-//			cars.push_back(line);
-			
-		if (count >= 5000){
-			cerr << "file size to large. Must be less than 5000 lines." << endl;
-			exit(1);   // call system to stop
-		}
-		count++;
-	}
+				
 	myfile.close();
 
 	
 	return;
 }
 
-void printVector(vector<char> &vect){
+
+
+void printSVector(vector<string> &vect){
+	for (auto i: vect)
+  cout << i << endl;
+//	cout << i << ' ';
+	return;
+}
+
+void printIVector(vector<int> &vect){
+	
 	for (auto i: vect)
   cout << i << endl;
 //	cout << i << ' ';
@@ -148,7 +159,8 @@ int main()
 {
 	//declare variables
 	int fileNum = 0;
-	vector <char> cars;
+	vector <string> carTime;
+	vector <string> carDir;
 //	vector<string> cars;
 	
 
@@ -163,8 +175,12 @@ int main()
 
 
 	//function calls
-	readFile(fileNum, cars);
-	printVector(cars);
+	readFile(fileNum, carTime, carDir);
+	cout << endl << "car Direction:" << endl;
+	printSVector(carDir);
+	cout << endl << "car Time:" << endl;
+	printSVector(carTime);
+	
 //	cout << "Direction ID # car arrived intersection (e.g., West #3 car arrived)" << endl;
 //	cout << "Direction ID # car left intersection (e.g., West #3 car left intersection)" << endl;
 	
