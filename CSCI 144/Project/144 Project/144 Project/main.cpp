@@ -40,6 +40,7 @@
 #include <vector> 	//use vectors
 #include <queue>		//create queues for directions
 #include <sstream>	//get individual chars from a string
+#include <map>
 using namespace std;
 
 
@@ -71,8 +72,7 @@ void readFile(int num, vector<string> &carTime, vector<string> &carDir
 	string line;			//store each line
 	string file;			//file name
 	ifstream myfile;	//file
-//	char ch;
-//	int time;
+
 	
 	//which file to use?
 	if(num == 1){
@@ -103,10 +103,9 @@ void readFile(int num, vector<string> &carTime, vector<string> &carDir
 					string interval = line.substr(0,index);
 					string direction = line.substr(index+1);
 				
-//					cout << direction << endl;
-//    			cout << line << '\n';
 					carTime.push_back(interval);
 					carDir.push_back(direction);
+					
 				
 				if (count >= 5000){
 					cerr << "file size to large. Must be less than 5000 lines." << endl;
@@ -139,7 +138,7 @@ void printIVector(vector<int> &vect){
 	return;
 }
 
-void stopLight(){
+void threadHandler(){
 		thread threadObj([] {
 			for (int i = 0; i < 10; i++)
 				cout << "Thread creation: " << i << endl;
@@ -151,6 +150,28 @@ void stopLight(){
 		threadObj.join();
 		cout << "Exiting from Main Thread" << endl;
 }
+
+void trafficLigh(vector<string> &carTime, vector<string> &carDir){
+	int i = 0;
+	
+	for(i=0; carDir.size()>i; i++){
+		cout << "Car will arive in: " << carTime[i] << "s" << endl;
+		cout << " and will be heading: " << carDir[i] << "." << endl << endl;
+		
+		if (carDir[i] == "N" || carDir[i] == "S"){
+			if (carDir[i+1] != "E" || carDir[i+1] != "W")
+			cout << "N or S" << endl;
+		}
+		
+		if (carDir[i] == "E" || carDir[i] == "W"){
+			if (carDir[i+1] != "N" || carDir[i+1] != "S")
+			cout << "E or W" << endl;
+		}
+		
+		
+		}//end for
+}//end func.
+
 //======================================functions end======================================//
 
 
@@ -176,10 +197,14 @@ int main()
 
 	//function calls
 	readFile(fileNum, carTime, carDir);
-	cout << endl << "car Direction:" << endl;
-	printSVector(carDir);
-	cout << endl << "car Time:" << endl;
-	printSVector(carTime);
+	
+//print functions
+//	cout << endl << "car Direction:" << endl;
+//	printSVector(carDir);
+//	cout << endl << "car Time:" << endl;
+//	printSVector(carTime);
+	
+	trafficLigh(carTime, carDir);
 	
 //	cout << "Direction ID # car arrived intersection (e.g., West #3 car arrived)" << endl;
 //	cout << "Direction ID # car left intersection (e.g., West #3 car left intersection)" << endl;
