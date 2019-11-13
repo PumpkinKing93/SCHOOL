@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A55C3E8237A337C00B42390 /* car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A55C3E6237A337C00B42390 /* car.cpp */; };
+		1A55C3EC237A353200B42390 /* simulation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A55C3EA237A353200B42390 /* simulation.cpp */; };
+		1A55C3EF237A358800B42390 /* trafficLight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A55C3ED237A358800B42390 /* trafficLight.cpp */; };
+		1A55C3F2237A35F000B42390 /* lane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A55C3F0237A35F000B42390 /* lane.cpp */; };
 		1A7DCD50233036E9002AB01C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1A7DCD4F233036E9002AB01C /* main.cpp */; };
-		1AF60C0E23638B8E008EA237 /* hard.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AF60C0323637AD1008EA237 /* hard.txt */; };
-		1AF60C0F23638B8E008EA237 /* medium.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AF60C0423637AD2008EA237 /* medium.txt */; };
-		1AF60C1023638B8E008EA237 /* easy.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AF60C0223637AD0008EA237 /* easy.txt */; };
+		1AF60C0E23638B8E008EA237 /* hard.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AF60C0323637AD1008EA237 /* hard.txt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1AF60C0F23638B8E008EA237 /* medium.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AF60C0423637AD2008EA237 /* medium.txt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		1AF60C1023638B8E008EA237 /* easy.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AF60C0223637AD0008EA237 /* easy.txt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +33,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A55C3E6237A337C00B42390 /* car.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = car.cpp; sourceTree = "<group>"; };
+		1A55C3E7237A337C00B42390 /* car.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = car.hpp; sourceTree = "<group>"; };
+		1A55C3EA237A353200B42390 /* simulation.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simulation.cpp; sourceTree = "<group>"; };
+		1A55C3EB237A353200B42390 /* simulation.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = simulation.hpp; sourceTree = "<group>"; };
+		1A55C3ED237A358800B42390 /* trafficLight.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = trafficLight.cpp; sourceTree = "<group>"; };
+		1A55C3EE237A358800B42390 /* trafficLight.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = trafficLight.hpp; sourceTree = "<group>"; };
+		1A55C3F0237A35F000B42390 /* lane.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lane.cpp; sourceTree = "<group>"; };
+		1A55C3F1237A35F000B42390 /* lane.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lane.hpp; sourceTree = "<group>"; };
 		1A7DCD4C233036E9002AB01C /* 144 Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "144 Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A7DCD4F233036E9002AB01C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		1AF60C0223637AD0008EA237 /* easy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = easy.txt; sourceTree = "<group>"; };
@@ -47,6 +59,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A55C3E9237A338E00B42390 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				1A55C3E7237A337C00B42390 /* car.hpp */,
+				1A55C3E6237A337C00B42390 /* car.cpp */,
+				1A55C3F0237A35F000B42390 /* lane.cpp */,
+				1A55C3F1237A35F000B42390 /* lane.hpp */,
+				1A55C3ED237A358800B42390 /* trafficLight.cpp */,
+				1A55C3EE237A358800B42390 /* trafficLight.hpp */,
+				1A55C3EA237A353200B42390 /* simulation.cpp */,
+				1A55C3EB237A353200B42390 /* simulation.hpp */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
 		1A7DCD43233036E9002AB01C = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +98,7 @@
 				1AF60C0423637AD2008EA237 /* medium.txt */,
 				1AF60C0223637AD0008EA237 /* easy.txt */,
 				1A7DCD4F233036E9002AB01C /* main.cpp */,
+				1A55C3E9237A338E00B42390 /* source */,
 			);
 			path = "144 Project";
 			sourceTree = "<group>";
@@ -139,7 +167,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A55C3EF237A358800B42390 /* trafficLight.cpp in Sources */,
+				1A55C3E8237A337C00B42390 /* car.cpp in Sources */,
 				1A7DCD50233036E9002AB01C /* main.cpp in Sources */,
+				1A55C3F2237A35F000B42390 /* lane.cpp in Sources */,
+				1A55C3EC237A353200B42390 /* simulation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,103 +40,33 @@
 #include <vector> 	//use vectors
 #include <queue>		//create queues for directions
 #include <sstream>	//get individual chars from a string
-#include <map>
+//#include <map>
+
+#include "source/car.hpp"
+#include "source/simulation.hpp"
+#include "source/trafficLight.hpp"
 using namespace std;
 
 
 //======================================Global======================================//
-vector<int> headOfTraffic; //Stores the positions of the directions. If (0) then there are no cars. Otherwise, 1, 1st ... n, nth in line.
-vector<queue<clock_t> > allCarsQueue; //place to store ALL THE CARS, sorted by direction, and storing the cars' arrival times.
-vector<long double> carsPastIntersection; //analogous to a more broadly used timeDifferences in stopsign.cpp
+//vector<int> headOfTraffic; //Stores the positions of the directions. If (0) then there are no cars. Otherwise, 1, 1st ... n, nth in line.
+//vector<queue<clock_t> > allCarsQueue; //place to store ALL THE CARS, sorted by direction, and storing the cars' arrival times.
+//vector<long double> carsPastIntersection; //analogous to a more broadly used timeDifferences in stopsign.cpp
 //======================================Global end======================================//
 
 
 //======================================Locks======================================//
-pthread_mutex_t carsLock = PTHREAD_MUTEX_INITIALIZER;
-mutex headOfTrafficLock;
-pthread_mutex_t carPastIntersectionLock = PTHREAD_MUTEX_INITIALIZER;
+//pthread_mutex_t carsLock = PTHREAD_MUTEX_INITIALIZER;
+//mutex headOfTrafficLock;
+//pthread_mutex_t carPastIntersectionLock = PTHREAD_MUTEX_INITIALIZER;
 //======================================Locks end======================================//
 
 
-//======================================classes======================================//
-
-//======================================classes end======================================//
-
-
 //======================================functions======================================//
-void readFile(int num, vector<string> &carTime, vector<string> &carDir
-){
-	//variables
-	int count = 0;		//counter
-	string dir;				//get the direction
-	string line;			//store each line
-	string file;			//file name
-	ifstream myfile;	//file
-
-	
-	//which file to use?
-	if(num == 1){
-  file = "easy.txt";
-	}
-	else if (num == 2){
-		file = "medium.txt";
-	}
-	else if (num == 3){
-		file = "hard.txt";
-	}
-	else exit(1);   // call system to stop
-	
-	
-	 myfile.open(file);	//open the file for use
-
-	
-	//check that file exists and opens
-  if (!myfile)
-  {
-		cerr << "Unable to open file" << endl;
-		exit(1);   // call system to stop
-	}
-	
-			while (getline (myfile,line)){
-				
-					size_t index = line.find(" ");
-					string interval = line.substr(0,index);
-					string direction = line.substr(index+1);
-				
-					carTime.push_back(interval);
-					carDir.push_back(direction);
-					
-				
-				if (count >= 5000){
-					cerr << "file size to large. Must be less than 5000 lines." << endl;
-					exit(1);   // call system to stop
-				}
-				count++;
-			}
-		
-				
-	myfile.close();
-
-	
-	return;
-}
 
 
 
-void printSVector(vector<string> &vect){
-	for (auto i: vect)
-  cout << i << endl;
-//	cout << i << ' ';
-	return;
-}
 
-void printIVector(vector<int> &vect){
-	
-	for (auto i: vect)
-  cout << i << endl;
-//	cout << i << ' ';
-	return;
-}
 
 void threadHandler(){
 		thread threadObj([] {
@@ -151,28 +81,11 @@ void threadHandler(){
 		cout << "Exiting from Main Thread" << endl;
 }
 
-void trafficLigh(vector<string> &carTime, vector<string> &carDir){
-	int i = 0;
-	
-	for(i=0; carDir.size()>i; i++){
-		cout << "Car will arive in: " << carTime[i] << "s" << endl;
-		cout << " and will be heading: " << carDir[i] << "." << endl << endl;
-		
-		if (carDir[i] == "N" || carDir[i] == "S"){
-			if (carDir[i+1] != "E" || carDir[i+1] != "W")
-			cout << "N or S" << endl;
-		}
-		
-		if (carDir[i] == "E" || carDir[i] == "W"){
-			if (carDir[i+1] != "N" || carDir[i+1] != "S")
-			cout << "E or W" << endl;
-		}
-		
-		
-		}//end for
-}//end func.
+
+
 
 //======================================functions end======================================//
+
 
 
 //======================================main======================================//
@@ -180,10 +93,8 @@ int main()
 {
 	//declare variables
 	int fileNum = 0;
-	vector <string> carTime;
-	vector <string> carDir;
-//	vector<string> cars;
-	
+	simulation sim;
+	trafficLight stoplight;
 
 	//ask the user which file they want to use.
 	cout << "please select a file: " <<
@@ -196,15 +107,18 @@ int main()
 
 
 	//function calls
-	readFile(fileNum, carTime, carDir);
+	sim.readFile(fileNum);
+//	sim.makeCars();
 	
+	sim.start();
+//	stoplight.light(car *carP);
 //print functions
 //	cout << endl << "car Direction:" << endl;
-//	printSVector(carDir);
+//	sim.printDirVect();
 //	cout << endl << "car Time:" << endl;
-//	printSVector(carTime);
+//	sim.printTimeVect();
 	
-	trafficLigh(carTime, carDir);
+//	stoplight.light(carTime, carDir);
 	
 //	cout << "Direction ID # car arrived intersection (e.g., West #3 car arrived)" << endl;
 //	cout << "Direction ID # car left intersection (e.g., West #3 car left intersection)" << endl;
