@@ -108,9 +108,10 @@ int main()
 
 	//function calls
 	sim.readFile(fileNum);
-//	sim.makeCars();
+	//sim.makeCars();
 	
 	sim.start();
+	
 //	stoplight.light(car *carP);
 //print functions
 //	cout << endl << "car Direction:" << endl;

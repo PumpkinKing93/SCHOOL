@@ -17,7 +17,7 @@
 #include <vector> 	//use vectors
 #include <queue>		//create queues for directions
 #include <sstream>	//get individual chars from a string
-#include<algorithm> //change vectors
+#include <algorithm> //change vectors
 #include <list>
 
 #include "lane.hpp"
@@ -25,7 +25,6 @@ using namespace std;
 
 class trafficLight{
 public:
-
 	
 	lane North;
 	lane East;
@@ -34,6 +33,7 @@ public:
 	
 	void sortCar(car carP);
 	void light();
+	void startLight();
 	void isSafe(vector<car> *vect);
 	
 };

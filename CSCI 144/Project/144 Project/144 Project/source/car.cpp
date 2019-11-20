@@ -8,8 +8,9 @@
 
 #include "car.hpp"
 
-car::car(){
-	int carID;
-	string interval;
-	string direction;
+car::car(int carID, string interval, string direction): carID(carID), interval(interval), direction(direction){
+	
+//	int carID;
+//	string interval;
+//	string direction;
 }

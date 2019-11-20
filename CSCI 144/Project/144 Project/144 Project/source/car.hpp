@@ -19,9 +19,9 @@
 #include <sstream>	//get individual chars from a string
 
 using namespace std;
-class car {
-public:
-	car();
+
+struct car {
+	car(int carID, string interval, string direction);
 	
 	int carID;
 	string interval;

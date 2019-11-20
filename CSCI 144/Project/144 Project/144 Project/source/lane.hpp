@@ -25,13 +25,25 @@ using namespace std;
 class lane {
 public:
 
+	struct compareLane {
+			bool operator()(car const& c1, car const& c2)
+			{
+					return c1.interval < c2.interval;
+			}
+	};
+	
+//	string arr[ROW][COL]
+	
 	vector<car> waiting;
+	
+	priority_queue<car, vector<car>, compareLane> cars;
 	
 	void wait(car carP);
 	void going();
+	
 		
-	private:
-		mutex _lock;
+private:
+	mutex _lock;
 };
 
 #endif /* lane_hpp */

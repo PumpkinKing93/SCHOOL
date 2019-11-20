@@ -11,13 +11,8 @@
 void simulation::makeCars(){
 	
 	for(int i = 0; i<carDir.size(); i++){
-		car *carP = new car();
-		carP->direction = carDir[i];
-		carP->interval = carTime[i];
-		carP->carID = i;
-		
-//		cout << carP->direction << endl;
-//		cout << "carID: " << i << " " << "carTime: " << carTime[i] << " " << "carDir: " << carDir[i] << endl;
+		car *carP = new car(i, carTime[i], carDir[i]);
+
 		light1.sortCar(*carP);
 	}
 	light1.light();
@@ -100,6 +95,7 @@ void simulation::printTimeVect(){
 
 void simulation::start(){
 	makeCars();
+	light1.startLight();
 	
 //	for(int i=0; i<North.waiting.size()){
 //	light1.light(North.waiting[]);
