@@ -25,6 +25,9 @@ using namespace std;
 class lane {
 public:
 
+	condition_variable cv;
+	mutex mlock;
+	
 	struct compareLane {
 			bool operator()(car const& c1, car const& c2)
 			{
@@ -42,8 +45,7 @@ public:
 	void going();
 	
 		
-private:
-	mutex _lock;
+
 };
 
 #endif /* lane_hpp */

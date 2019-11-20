@@ -47,7 +47,8 @@
 #include "source/trafficLight.hpp"
 using namespace std;
 
-
+mutex m;
+condition_variable cv;
 //======================================Global======================================//
 //vector<int> headOfTraffic; //Stores the positions of the directions. If (0) then there are no cars. Otherwise, 1, 1st ... n, nth in line.
 //vector<queue<clock_t> > allCarsQueue; //place to store ALL THE CARS, sorted by direction, and storing the cars' arrival times.

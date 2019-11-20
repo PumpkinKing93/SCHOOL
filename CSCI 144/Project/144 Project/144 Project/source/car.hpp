@@ -27,6 +27,7 @@ struct car {
 	string interval;
 	string direction;
 	
+//	thread(car(carID, interval, direction));
 };
 
 #endif /* car_hpp */

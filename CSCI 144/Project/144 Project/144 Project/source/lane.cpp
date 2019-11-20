@@ -11,8 +11,9 @@
 
 
 void lane::going(){
-	if (!cars.empty()) {
-		unique_lock<mutex> mlock(mutex);
+	while (!cars.empty()) {
+		thread thread_obj (cars.top());
+//		unique_lock<mutex> mlock(mutex);
 		cout<<"Passed car# = "<<cars.top().carID<<endl;
 		cout<<"Passed Time = "<<cars.top().interval<<endl;
 		cout << "Passed Dir " << cars.top().direction << endl;
