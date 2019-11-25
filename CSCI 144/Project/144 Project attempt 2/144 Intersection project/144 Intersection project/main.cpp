@@ -13,6 +13,10 @@
 #include <vector> 	//use vectors
 #include <queue>		//create queues for directions
 #include <sstream>	//get individual chars from a string
+#include <chrono>
+#include <unistd.h>
+
+#define MAX 100
 
 using namespace std;
 
@@ -20,6 +24,29 @@ mutex m;
 condition_variable cv;
 vector<string> carTime;
 vector<string> carDir;
+vector<bool> ready(MAX);
+vector<thread> vts;
+
+struct car {
+	
+	int carID;
+	string interval;
+	string direction;
+	
+	car(int carID, string interval, string direction): carID(carID), interval(interval), direction(direction){
+	}
+};
+
+struct compareLane {
+		bool operator()(car const& c1, car const& c2){
+				return c1.interval < c2.interval;
+		}
+};
+
+priority_queue<car, vector<car>, compareLane> cars;
+
+
+
 
 
 void readFile(int num){
@@ -52,62 +79,65 @@ void readFile(int num){
 	 myfile.open(file);	//open the file for use
 
 	
-	
 	while (getline (myfile,line)){
 		
 			size_t index = line.find(" ");
 			string interval = line.substr(0,index);
 			string direction = line.substr(index+1);
-		
 			carTime.push_back(interval);
 			carDir.push_back(direction);
-				
+		
+
+	}
+	
 	myfile.close();
 
 	
 	return;
-	}
 }
 
-struct car {
-	
-	int carID;
-	string interval;
-	string direction;
-	
-	car(int carID, string interval, string direction): carID(carID), interval(interval), direction(direction){
-		//	thread(car(carID, interval, direction));
-	}
-};
 
-struct compareLane {
-		bool operator()(car const& c1, car const& c2)
-		{
-				return c1.interval < c2.interval;
-		}
-};
-
-
-priority_queue<car, vector<car>, compareLane> cars;
 
 
 void makeCars(){
 	
 	for(int i = 0; i<carDir.size(); i++){
 		car *carP = new car(i, carTime[i], carDir[i]);
+//		cout << carDir.size() << i << endl;
 		cars.push(*carP);
+//		cout << cars.top().carID << endl;
 	}
 }
+
+
+
+void going(){
+	while (!cars.empty()) {
+//		thread thread_obj ();
+		
+		cout<<"Passed car#: "<<cars.top().carID<<" Time: "<<cars.top().interval<<" Dir: " << cars.top().direction <<endl;
+//		ready.at(x) = false;
+//		while (!ready.at(x))intersection.wait(mlock);
+//			cout << "thread " << x << " completed!" << endl;
+		cars.pop();
+//		thread_obj.join();
+	}
+}
+
+
+
+
+
+
 
 void theDriver(int num){
 	readFile(num);
 	makeCars();
-	
+	going();
 }
 
 int main() {
 	int fileNum = 0;
-
 
 	//ask the user which file they want to use.
 	cout << "please select a file: " <<
@@ -118,6 +148,8 @@ int main() {
 	cin >> fileNum;
 	
 	theDriver(fileNum);
+	
+	
 	
 	return 0;
 }
