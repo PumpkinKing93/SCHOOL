@@ -176,9 +176,11 @@ int main() {
 		string interval = line.substr(0,index);
 		string direction = line.substr(index+1);
 		
+		//problem here
 		cars.push_back(thread(go,
-													ref(interval),
-													ref(direction))); //driver
+													interval,
+													direction)); //driver
+		
 		cout << "Thread Created" << endl;
 	}
 	file.close();
