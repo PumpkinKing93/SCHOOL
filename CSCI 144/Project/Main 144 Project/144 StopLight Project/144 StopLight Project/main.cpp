@@ -24,6 +24,7 @@
 using namespace std;					//get rid of the STD::
 
 // create the car object with the time and direction similar to sudo code
+//=================================Structures=============================================
 struct Car {
 	int interval;
 	string direction;
@@ -40,27 +41,35 @@ struct Compare {
 		return p1->interval > p2->interval;
 	}
 };
+//========================================================================================
 
+//=================================Functions=============================================
 
 // define all the functions for use later
 void release();
 void wait(int, string);
 void go(string, priority_queue<Car*, vector<Car*>, Compare>&, int, string);
+//=======================================================================================
 
+
+//=================================Definitions=============================================
 
 // Create all the priority queues for the lanes
-priority_queue<Car*, vector<Car*>, Compare> Empty; 		//Empty lane place holder just in case
-priority_queue<Car*, vector<Car*>, Compare> North;		//North lane for all N variations
-priority_queue<Car*, vector<Car*>, Compare> South;		//South lane for all S variations
-priority_queue<Car*, vector<Car*>, Compare> West;			//West lane for all W variations
-priority_queue<Car*, vector<Car*>, Compare> East;			//East lane for all E variations
+priority_queue<Car*, vector<Car*>, Compare> Empty;	//Empty lane place holder just in case
+priority_queue<Car*, vector<Car*>, Compare> North;	//North lane for all N variations
+priority_queue<Car*, vector<Car*>, Compare> South;	//South lane for all S variations
+priority_queue<Car*, vector<Car*>, Compare> West;	//West lane for all W variations
+priority_queue<Car*, vector<Car*>, Compare> East;	//East lane for all E variations
 priority_queue<Car*,vector<Car*>,Compare> activeLane; //the lane that moves the cars
-queue<Car*> intersection;															//queue to track all the cars in the intersection
-condition_variable cv;																//cv to check if its clear
-mutex laneLocker;																			//lock the lane so that it doesnt crash
-vector<thread> cars;																	//keep track of all the running threads
-string currDir = "";																	//keep track of the current direction thats going
+queue<Car*> intersection;	//queue to track all the cars in the intersection
+condition_variable cv;	//cv to check if its clear
+mutex laneLocker;	//lock the lane so that it doesnt crash
+vector<thread> cars;	//keep track of all the running threads
+string currDir = "";	//keep track of the current direction thats going
+//==========================================================================================
 
+
+//=================================Func Def=============================================
 
 void wait(int interval, string direction){
 	if(direction[0] == 'N'){
@@ -110,7 +119,7 @@ void release() {
 
 
 
-void go(string d, priority_queue<Car*,vector<Car*>,Compare>& activeLane, int interval, string direction) {
+void go(string dir, priority_queue<Car*,vector<Car*>,Compare>& activeLane, int interval, string direction) {
 	
 	Car* newCar = new Car(interval, direction);
 	activeLane.push(newCar);
@@ -126,16 +135,17 @@ void go(string d, priority_queue<Car*,vector<Car*>,Compare>& activeLane, int int
 	sleep(1);
 	//	•	Direction ID # car intervald intersection (e.g., West #3 car interval)
 	//	•	Direction ID # car left intersection (e.g., West #3 car left intersection)
-//	printf("%s: %i   Direction: %s\n", d.c_str(), tempCar->interval, tempCar->direction.c_str());
-	cout << d.c_str() << ": " << "Direction: " << d.c_str() << " " << tempCar->interval << " " << tempCar->direction.c_str() << endl;
+	//	printf("%s: %i   Direction: %s\n", d.c_str(), tempCar->interval, tempCar->direction.c_str());
+	cout << dir.c_str() << ": " << "Direction: " << dir.c_str() << " " << tempCar->interval << " " << tempCar->direction.c_str() << endl;
 	intersection.pop();
 }
+//======================================================================================
 
 
 int main() {
-	string line = "";					//get each line
-	string filePath;					//store the file path
-	int fileNum;							//choose which file
+	string line;	//get each line
+	string filePath;	//store the file path
+	int fileNum;	//choose which file
 	
 	//ask the user which file they want to use.
 	cout << "please select a file: " <<
@@ -160,15 +170,16 @@ int main() {
 	ifstream file(filePath);	//read the file from the user selection
 	
 	thread releaseCars(release);	//create threads to call the release function
-		
+	
 	while (getline (file,line)){
-			size_t index = line.find(" ");
-			string interval = line.substr(0,index);
-			string direction = line.substr(index+1);
+		size_t index = line.find(" ");
+		string interval = line.substr(0,index);
+		string direction = line.substr(index+1);
 		
-		cars.push_back(thread(go, interval, direction));
-//			carTime.push_back(interval);
-//			carDir.push_back(direction);
+		cars.push_back(thread(go,
+													ref(interval),
+													ref(direction))); //driver
+		cout << "Thread Created" << endl;
 	}
 	file.close();
 	
