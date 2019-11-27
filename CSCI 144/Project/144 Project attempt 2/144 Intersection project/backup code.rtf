@@ -1,0 +1,238 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2511
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Bold;}
+{\colortbl;\red255\green255\blue255;\red108\green121\blue134;\red31\green31\blue36;\red255\green255\blue255;
+\red253\green143\blue63;\red252\green106\blue93;\red208\green191\blue105;\red252\green95\blue163;\red208\green168\blue255;
+\red208\green168\blue255;\red65\green161\blue192;\red93\green216\blue255;\red103\green183\blue164;\red158\green241\blue221;
+\red161\green103\blue230;\red161\green103\blue230;\red103\green183\blue164;}
+{\*\expandedcolortbl;;\csgenericrgb\c42394\c47462\c52518;\csgenericrgb\c12054\c12284\c14131;\csgenericrgb\c100000\c100000\c100000\c85000;
+\csgenericrgb\c99131\c56076\c24611;\csgenericrgb\c98912\c41558\c36568;\csgenericrgb\c81498\c74939\c41233;\csgenericrgb\c98839\c37355\c63833;\csgenericrgb\c81681\c65692\c99927;
+\csgenericrgb\c81569\c65882\c100000;\csgenericrgb\c25490\c63137\c75294;\csgenericrgb\c36295\c84643\c99897;\csgenericrgb\c40538\c71705\c64209;\csgenericrgb\c62145\c94386\c86819;
+\csgenericrgb\c63137\c40392\c90196;\csgenericrgb\c63232\c40219\c90115;\csgenericrgb\c40392\c71765\c64314;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab321
+\pard\tx321\pardeftab321\pardirnatural\partightenfactor0
+
+\f0\fs26 \cf2 \cb3 //\cf4 \
+\cf2 //  main.cpp\cf4 \
+\cf2 //  144 Intersection project\cf4 \
+\cf2 //\cf4 \
+\cf2 //  Created by Tyler Gillette on 11/20/19.\cf4 \
+\cf2 //  Copyright \'a9 2019 Tyler  Gillette. All rights reserved.\cf4 \
+\cf2 //\cf4 \
+\
+\cf5 #include \cf6 <iostream>\cf5 	\cf2 //get rid of the STD::\cf4 \
+\cf5 #include \cf6 <thread>\cf5 		\cf2 //be able to use threads keyword\cf4 \
+\cf5 #include \cf6 <fstream>\cf5 	\cf2 //write to a file\cf4 \
+\cf5 #include \cf6 <string>\cf5   	\cf2 //read from a file\cf4 \
+\cf5 #include \cf6 <vector>\cf5  	\cf2 //use vectors\cf4 \
+\cf5 #include \cf6 <queue>\cf5 		\cf2 //create queues for directions\cf4 \
+\cf5 #include \cf6 <sstream>\cf5 	\cf2 //get individual chars from a string\cf4 \
+\cf5 #include \cf6 <chrono>\cf4 \
+\cf5 #include \cf6 <unistd.h>\cf4 \
+\
+\cf5 #define MAX \cf7 100\cf4 \
+\
+
+\f1\b \cf8 using
+\f0\b0 \cf4  
+\f1\b \cf8 namespace
+\f0\b0 \cf4  \cf9 std\cf4 ;\
+\
+\cf10 mutex\cf4  \cf11 m\cf4 ;\
+\cf10 condition_variable\cf4  \cf11 cv\cf4 ;\
+\cf10 vector\cf4 <\cf9 string\cf4 > \cf11 carTime\cf4 ;\
+\cf10 vector\cf4 <\cf9 string\cf4 > \cf11 carDir\cf4 ;\
+\cf10 vector\cf4 <
+\f1\b \cf8 bool
+\f0\b0 \cf4 > \cf11 ready\cf4 (\cf5 MAX\cf4 );\
+\cf10 vector\cf4 <\cf10 thread\cf4 > \cf11 vts\cf4 ;\
+\
+
+\f1\b \cf8 struct
+\f0\b0 \cf4  \cf12 car\cf4  \{\
+	\
+	
+\f1\b \cf8 int
+\f0\b0 \cf4  \cf11 carID\cf4 ;\
+	\cf9 string\cf4  \cf11 interval\cf4 ;\
+	\cf9 string\cf4  \cf11 direction\cf4 ;\
+	\
+	\cf11 car\cf4 (
+\f1\b \cf8 int
+\f0\b0 \cf4  carID, \cf9 string\cf4  interval, \cf9 string\cf4  direction): \cf13 carID\cf4 (carID), \cf13 interval\cf4 (interval), \cf13 direction\cf4 (direction)\{\
+	\}\
+\};\
+\
+
+\f1\b \cf8 struct
+\f0\b0 \cf4  \cf12 compareLane\cf4  \{\
+		
+\f1\b \cf8 bool
+\f0\b0 \cf4  
+\f1\b \cf8 operator
+\f0\b0 \cf4 ()(\cf14 car\cf4  
+\f1\b \cf8 const
+\f0\b0 \cf4 & c1, \cf14 car\cf4  
+\f1\b \cf8 const
+\f0\b0 \cf4 & c2)\{\
+				
+\f1\b \cf8 return
+\f0\b0 \cf4  c1.\cf13 interval\cf4  < c2.\cf13 interval\cf4 ;\
+		\}\
+\};\
+\
+\cf10 priority_queue\cf4 <\cf14 car\cf4 , \cf10 vector\cf4 <\cf14 car\cf4 >, \cf14 compareLane\cf4 > \cf11 cars\cf4 ;\
+\
+\
+\
+\
+\
+
+\f1\b \cf8 void
+\f0\b0 \cf4  \cf11 readFile\cf4 (
+\f1\b \cf8 int
+\f0\b0 \cf4  num)\{\
+	\cf9 string\cf4  dir;				\cf2 //get the direction\cf4 \
+	\cf9 string\cf4  line;			\cf2 //store each line\cf4 \
+	\cf9 string\cf4  file;			\cf2 //file name\cf4 \
+	\cf9 ifstream\cf4  myfile;	\cf2 //file\cf4 \
+\
+	\
+	\cf2 //which file to use?\cf4 \
+	
+\f1\b \cf8 if
+\f0\b0 \cf4 (num == \cf7 1\cf4 )\{\
+  file = \cf6 "easy.txt"\cf4 ;\
+	\}\
+	
+\f1\b \cf8 else
+\f0\b0 \cf4  
+\f1\b \cf8 if
+\f0\b0 \cf4  (num == \cf7 2\cf4 )\{\
+		file = \cf6 "medium.txt"\cf4 ;\
+	\}\
+	
+\f1\b \cf8 else
+\f0\b0 \cf4  
+\f1\b \cf8 if
+\f0\b0 \cf4  (num == \cf7 3\cf4 )\{\
+		file = \cf6 "hard.txt"\cf4 ;\
+	\}\
+	
+\f1\b \cf8 else
+\f0\b0 \cf4  \cf15 exit\cf4 (\cf7 1\cf4 );   \cf2 // call system to stop\cf4 \
+	\
+	\
+	\cf2 //check that file exists and opens\cf4 \
+  
+\f1\b \cf8 if
+\f0\b0 \cf4  (!myfile)\
+  \{\
+		\cf16 cerr\cf4  << \cf6 "Unable to open file"\cf4  << \cf15 endl\cf4 ;\
+		\cf15 exit\cf4 (\cf7 1\cf4 );   \cf2 // call system to stop\cf4 \
+	\}\
+	\
+	 myfile.\cf15 open\cf4 (file);	\cf2 //open the file for use\cf4 \
+\
+	\
+	
+\f1\b \cf8 while
+\f0\b0 \cf4  (\cf15 getline\cf4  (myfile,line))\{\
+		\
+			\cf9 size_t\cf4  index = line.\cf15 find\cf4 (\cf6 " "\cf4 );\
+			\cf9 string\cf4  interval = line.\cf15 substr\cf4 (\cf7 0\cf4 ,index);\
+			\cf9 string\cf4  direction = line.\cf15 substr\cf4 (index+\cf7 1\cf4 );\
+			\cf13 carTime\cf4 .\cf15 push_back\cf4 (interval);\
+			\cf13 carDir\cf4 .\cf15 push_back\cf4 (direction);\
+		\
+\
+	\}\
+	\
+	myfile.\cf15 close\cf4 ();\
+\
+	\
+	
+\f1\b \cf8 return
+\f0\b0 \cf4 ;\
+\}\
+\
+\
+\
+\
+
+\f1\b \cf8 void
+\f0\b0 \cf4  \cf11 makeCars\cf4 ()\{\
+	\
+	
+\f1\b \cf8 for
+\f0\b0 \cf4 (
+\f1\b \cf8 int
+\f0\b0 \cf4  i = \cf7 0\cf4 ; i<\cf13 carDir\cf4 .\cf15 size\cf4 (); i++)\{\
+		\cf14 car\cf4  *carP = 
+\f1\b \cf8 new
+\f0\b0 \cf4  \cf14 car\cf4 (i, \cf13 carTime\cf4 [i], \cf13 carDir\cf4 [i]);\
+\cf2 //		cout << carDir.size() << i << endl;\cf4 \
+		\cf13 cars\cf4 .\cf15 push\cf4 (*carP);\
+\cf2 //		cout << cars.top().carID << endl;\cf4 \
+	\}\
+\}\
+\
+\
+\
+
+\f1\b \cf8 void
+\f0\b0 \cf4  \cf11 going\cf4 ()\{\
+	
+\f1\b \cf8 while
+\f0\b0 \cf4  (!\cf13 cars\cf4 .\cf15 empty\cf4 ()) \{\
+\cf2 //		thread thread_obj ();\cf4 \
+		\
+		\cf16 cout\cf4 <<\cf6 "Passed car#: "\cf4 <<\cf13 cars\cf4 .\cf15 top\cf4 ().\cf13 carID\cf4 <<\cf6 " Time: "\cf4 <<\cf13 cars\cf4 .\cf15 top\cf4 ().\cf13 interval\cf4 <<\cf6 " Dir: "\cf4  << \cf13 cars\cf4 .\cf15 top\cf4 ().\cf13 direction\cf4  <<\cf15 endl\cf4 ;\
+\cf2 //		ready.at(x) = false;\cf4 \
+\cf2 //		while (!ready.at(x))intersection.wait(mlock);\cf4 \
+\cf2 //			cout << "thread " << x << " completed!" << endl;\cf4 \
+		\cf13 cars\cf4 .\cf15 pop\cf4 ();\
+\cf2 //		thread_obj.join();\cf4 \
+	\}\
+\}\
+\
+\
+\
+\
+\
+\
+\
+
+\f1\b \cf8 void
+\f0\b0 \cf4  \cf11 theDriver\cf4 (
+\f1\b \cf8 int
+\f0\b0 \cf4  num)\{\
+	\cf17 readFile\cf4 (num);\
+	\cf17 makeCars\cf4 ();\
+	\cf17 going\cf4 ();\
+\}\
+\
+
+\f1\b \cf8 int
+\f0\b0 \cf4  \cf11 main\cf4 () \{\
+	
+\f1\b \cf8 int
+\f0\b0 \cf4  fileNum = \cf7 0\cf4 ;\
+\
+	\cf2 //ask the user which file they want to use.\cf4 \
+	\cf16 cout\cf4  << \cf6 "please select a file: "\cf4  <<\
+	\cf15 endl\cf4  << \cf6 "  0: exit"\cf4  <<\
+	\cf15 endl\cf4  << \cf6 "  1: easy"\cf4  <<\
+	\cf15 endl\cf4  << \cf6 "  2: medium"\cf4  <<\
+	\cf15 endl\cf4  << \cf6 "  3: hard"\cf4  << \cf15 endl\cf4 ;\
+	\cf16 cin\cf4  >> fileNum;\
+	\
+	\cf17 theDriver\cf4 (fileNum);\
+	\
+	\
+	\
+	
+\f1\b \cf8 return
+\f0\b0 \cf4  \cf7 0\cf4 ;\
+\}\
+}
