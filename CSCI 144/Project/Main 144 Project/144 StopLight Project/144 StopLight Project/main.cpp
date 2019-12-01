@@ -21,6 +21,7 @@
 #include <unistd.h>
 #include <vector>							//use vectors
 
+
 using namespace std;					//get rid of the STD::
 
 // create the car object with the time and direction similar to sudo code
@@ -177,9 +178,7 @@ int main() {
 		string direction = line.substr(index+1);
 		
 		//problem here
-		cars.push_back(thread(go,
-													interval,
-													direction)); //driver
+		cars.push_back(thread(go,stoi(interval),direction)); //driver
 		
 		cout << "Thread Created" << endl;
 	}
