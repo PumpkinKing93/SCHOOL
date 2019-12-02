@@ -50,9 +50,6 @@ struct Compare {
 
 //=================================Functions=============================================
 
-// define all the functions for use later
-//void release();
-//void wait(int, string);
 void go(string, priority_queue<Car*, vector<Car*>, Compare>&, int, string);
 //=======================================================================================
 
@@ -144,7 +141,6 @@ void go(string dir, priority_queue<Car*,vector<Car*>,Compare>& activeLane, int i
 	}
 	Car* tempCar = activeLane.top();
 	activeLane.pop();
-//	sleep(1);
 	intersection.push(tempCar);
 	cout << "Direction: " << tempCar->direction.c_str() << " ID: " << tempCar->interval << " Time: " << tempCar->interval <<  endl;
 	intersection.pop();
