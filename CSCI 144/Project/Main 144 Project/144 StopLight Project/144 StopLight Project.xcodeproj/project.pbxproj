@@ -16,7 +16,7 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		1AE43E98238C835B0018CC9E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
@@ -24,7 +24,7 @@
 				1AE43EAB238C89CC0018CC9E /* hard.txt in CopyFiles */,
 				1AE43EAC238C89CC0018CC9E /* medium.txt in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
