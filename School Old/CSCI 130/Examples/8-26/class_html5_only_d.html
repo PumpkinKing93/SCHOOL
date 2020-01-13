@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<!-- examples taken from the book HTML5 and CSS3 7th Edition, -->
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8" />
+<title>Web Programming CSci 130 - HTML5</title>
+</head>
+
+<body>
+
+
+<!-- More tags -->
+
+<!--
+O: ordered
+U: unordered
+L: list
+I: item
+
+-->
+
+<hr>
+
+Changing a light bulb (a list with numbers)
+<ol>
+<li>Make sure you have unplugged the lamp from the wall socket.</li>
+<li>Unscrew the old bulb.</li>
+<li>Get the new bulb out of the package.</li>
+<li>Check the wattage to make sure it's correct.</li>
+<li>Screw in the new bulb.</li>
+<li>Plug in the lamp and turn it on!</li>
+</ol>
+
+<hr>
+
+<ul>
+<li>New or improved features marked with a solid bullet.</li>
+<li>One-click page layout</li>
+<li>Spell checker for 327 major languages</li>
+<li>Image retouching plug-in</li>
+<li>Special HTML filters</li>
+<li>Unlimited Undo's and Redo's</li>
+<li>Automatic book writing</li>
+</ul>
+
+<hr>
+
+<ol start="2">
+<li>Unscrew the old bulb.</li>
+<li value="5">Screw in the new bulb. </li>
+<li value="12">Plug in the lamp and turn it on!</li>
+</ol>
+
+<hr>
+
+<ol>
+<li>Introduction
+<ol>
+<li>Boy's childhood</li>
+<li>Girl's childhood</li>
+</ol>
+</li>
+<li>Development
+<ol>
+<li>Boy meets Girl</li>
+<li>Boy and Girl fall in love</li>
+<li>Boy and Girl have fight</li>
+</ol>
+</li>
+<li>Climax
+<ol>
+<li>Boy gives Girl ultimatum
+<ol>
+<li>Girl can't believe her ears</li>
+<li>Boy is indignant at Girl's indignance</li>
+</ol>
+</li>
+<li>Girl tells Boy to get lost</li>
+</ol>
+</li>
+<li>Denouement</li>
+<li>Epilogue</li>
+</ol>
+
+<hr>
+
+<!-- Description list -->
+<dl>
+<dt>Boris Karloff</dt>
+<dd>Best known for his role in <cite>Frankenstein</cite> and related horror films, this scaremaster's real name was William Henry Pratt.</dd>
+<dt>Christopher Lee</dt>
+<dd>Lee took a bite out of audiences as Dracula in multiple Hammer horror classics.</dd>
+</dl>
+
+<hr>
+
+<!-- Tables
+
+t:table
+r:row
+h:header
+d:data
+
+
+-->
+
+<table>
+<caption>Quarterly Financials for 1962-1964 (in Thousands)</caption>
+<tr> <!-- first row -->
+<th scope="col">1962</th>
+<th scope="col">1963</th>
+<th scope="col">1964</th>
+</tr>
+<tr> <!-- second row -->
+<td>$145</td>
+<td>$167</td>
+<td>$161</td>
+</tr>
+<tr> <!-- third row -->
+<td>$140</td>
+<td>$159</td>
+<td>$164</td>
+</tr>
+<tr> <!-- fourth row -->
+<td>$153</td>
+<td>$162</td>
+<td>$168</td>
+</tr>
+<tr> <!-- fifth row -->
+<td>$157</td>
+<td>$160</td>
+<td>$171</td>
+</tr>
+</table>
+
+<hr>
+
+<table>
+<caption>Quarterly Financials for 1962-1964 (in Thousands)</caption>
+
+<thead> <!-- table head -->
+<tr>
+<th scope="col">Quarter</th>
+<th scope="col">1962</th>
+<th scope="col">1963</th>
+<th scope="col">1964</th>
+</tr>
+</thead>
+
+<tbody> <!-- table body -->
+<tr>
+<th scope="row">Q1</th>
+<td>$145</td>
+<td>$167</td>
+<td>$161</td>
+</tr>
+<tr>
+<th scope="row">Q2</th>
+<td>$140</td>
+<td>$159</td>
+<td>$164</td>
+</tr>
+... Q3 and Q4 rows ...
+</tbody>
+
+<tfoot> <!-- table foot -->
+<tr>
+<th scope="row">TOTAL</th>
+<td>$595</td>
+<td>$648</td>
+<td>$664</td>
+</tr>
+</tfoot>
+</table>
+
+
+<hr>
+
+<table>
+<caption>TV Schedule</caption>
+
+<thead> <!-- table head -->
+<tr>
+<th scope="rowgroup">Time</th>
+<th scope="col">Mon</th>
+<th scope="col">Tue</th>
+<th scope="col">Wed</th>
+</tr>
+</thead>
+
+<tbody> <!-- table body -->
+<tr>
+<th scope="row">8 pm</th>
+<td>Staring Contest</td>
+<td colspan="2">Celebrity Hoedown </td>
+</tr>
+<tr>
+<th scope="row">9 pm</th>
+<td>Hardy, Har, Har</td>
+<td>What's for Lunch?</td>
+<td rowspan="2">Movie of the Week </td>
+</tr>
+<tr>
+<th scope="row">10 pm</th>
+<td>Healers, Wheelers &amp; Dealers</td>
+<td>It's a Crime</td>
+</tr>
+</tbody>
+
+</table>
+
+<hr>
+
+</body>
+</html>

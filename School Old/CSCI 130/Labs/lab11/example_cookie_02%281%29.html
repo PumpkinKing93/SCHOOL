@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Web Programming CSci 130 - Cookies</title>
+      <script>
+            function WriteCookie() {
+               if( document.myform.firstname.value == "" ){
+                  alert("Enter some value!");
+                  return;
+               }
+			   
+			   if( document.myform.lastname.value == "" ){
+                  alert("Enter some value!");
+                  return;
+               }
+               x=encodeURI(document.myform.firstname.value) + ";";
+			   // Use document.cookie for each pair <key,value>
+               document.cookie="firstname=" + x;
+			   localStorage.setItem('firstname_ls',x);
+			   
+			   x=encodeURI(document.myform.lastname.value) + ";";
+               document.cookie="lastname=" + x;  
+			   localStorage.setItem('lastname_ls',x);
+			   
+			   
+			   
+            }
+      </script>    
+   </head>
+   <body>
+      <form name="myform" action="">
+         Enter first name: <input type="text" name="firstname"/>
+		 Enter last  name: <input type="text" name="lastname"/>
+         <input type="button" value="Set Cookie" onclick="WriteCookie();"/>
+      </form>
+   </body>
+</html>

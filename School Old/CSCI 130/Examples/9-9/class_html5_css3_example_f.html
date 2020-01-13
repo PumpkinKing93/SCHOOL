@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* Description of the CSS */
+
+body {margin: 10px 50px 10px 50px;} /* TOP RIGHT BOTTOM LEFT */
+
+
+/*
+Value of float	Description
+none	The element is not floated, and will be displayed just where it occurs in the text. This is default.
+left	The element floats to the left
+right	The element floats the right
+initial	Sets this property to its default value. 
+inherit	Inherits this property from its parent element.
+*/
+
+ul.topnav {
+    list-style-type: none; /* we dont want the bullet points */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    background-color: #333;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #111;}
+ul.topnav li.right {float: right;}
+
+/* specifications related to the media */
+@media screen and (max-width: 400px){
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+}
+
+
+section {
+background-color: lightgray;
+}
+
+.thinsection {
+width: 50px;
+}
+
+
+</style>
+</head>
+<body>
+
+<ul class="topnav">
+  <li><a href="#home">Home</a></li>
+  <li><a href="#news">News</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li class="right"><a href="#about">About</a></li> <!-- it is placed in the right -->
+</ul>
+
+<div style="padding:0 16px;">
+<section>
+  <h2>Responsive Topnav Example</h2>
+  <p>This example use media queries to stack the topnav vertically when the screen size is 600px or less. Change the size of the windows of the browser to try it.</p>
+  <p>Resize the browser window to see the effect.</p>
+</section>
+
+<section class="thinsection">
+blabla blabla blabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blabla
+blabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blabla
+blabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blablablabla blabla
+</section>
+
+  </div>
+
+</body>
+</html>

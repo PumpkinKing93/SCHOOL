@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>Multiple Canvas - CSci 130 - Conversion</title>
+  <style>
+    canvas {
+    background-color: pink;
+    display: inline-block; /* allows to set a width and height on the element */
+	}
+  </style>
+ </head>
+ <body>
+  <!-- No ID, no problem !-->
+  <canvas width="150' height="150"></canvas>
+  <canvas width="150' height="150"></canvas>
+  <canvas width="150' height="150"></canvas>
+   <script>
+   
+// The size of the canvas element will default to 300 x 150 pixels !!!
+   
+let canvases = document.getElementsByTagName('canvas');
+
+let radius=50;
+let x=0;
+let y=0;
+for( var i=0; i<canvases.length; i++){
+    ctx = canvases[i].getContext('2d');
+	ctx.translate(75,75);
+	
+	ctx.beginPath();
+    ctx.arc(x,y,radius, 0, 2*Math.PI);
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'blue';
+    ctx.stroke();
+    ctx.closePath();   
+	
+	// You need to begin and close path, otherwise everything will be red !
+    ctx.beginPath();	
+	ctx.strokeStyle = 'red';
+	ctx.rect(-20,20,40,40);
+	ctx.stroke();
+	ctx.closePath();
+}
+  </script>
+ </body>
+</html>

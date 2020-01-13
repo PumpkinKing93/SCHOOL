@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CSci130 - Web Programming - AddClass demo</title>
+  <style>
+  /* definition of the style for all the paragraphs */
+  p {
+    margin: 8px;
+    font-size: 16px;
+  }
+  /* definition of the class select */
+  .selected {
+    color: blue;
+  }
+  .highlight {
+    background: yellow;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+<p>Hello</p> <!-- first paragraph -->
+<p>and</p>
+<p>Goodbye</p> <!-- last paragraph -->
+<script>
+$("p").last().addClass("selected"); // the last element (goodbye) will be in blue
+</script>
+</body>
+</html>

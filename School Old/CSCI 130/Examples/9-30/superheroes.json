@@ -1,0 +1,43 @@
+{
+  "squadName" : "Shin Seiki Bulldogelion",
+  "homeTown" : "Neo Fresno 3",
+  "formed" : 2017,
+  "secretBase" : "Super tower D",
+  "active" : true,
+  "members" : [
+    {
+      "name" : "JavaMan",
+      "age" : 29,
+      "secretIdentity" : "Jesus Santos",
+      "powers" : [
+        "Radiation resistance",
+        "Turning tiny",
+        "Radiation blast",
+		"XML laser"
+      ]
+    },
+    {
+      "name" : "Madame Haskell",
+      "age" : 39,
+      "secretIdentity" : "Irma Functionalez",
+      "powers" : [
+        "Million tonne punch",
+        "Damage resistance",
+        "Superhuman reflexes",
+		"HTML and CSS shield"
+      ]
+    },
+    {
+      "name" : "Dead Skunk",
+      "age" : 420,
+      "secretIdentity" : "Unknown",
+      "powers" : [
+        "Immortality",
+        "Heat Immunity",
+        "Teleportation",
+        "Interdimensional travel",
+		"PHP programming"
+      ]
+    }
+  ]
+}

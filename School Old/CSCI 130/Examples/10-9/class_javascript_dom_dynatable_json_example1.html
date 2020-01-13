@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Web Programming-CSci 130</title>
+	</head>
+	<body>
+	
+	
+		<!-- A table for the input -->
+		<div id="GUI">
+		<table>
+			<tr><td>First Name:</td><td><input type="text" id="objfn"></td></tr>
+			<tr><td>Last Name:</td><td><input type="text" id="objln"></td></tr>
+			<tr><td>DOB:</td><td><input type="text" id="objdob"></td></tr>
+			<tr><td>Phone:</td><td><input type="text" id="objphone"></td></tr>
+			<tr><td rowspan="2"><input type="button" id="add" value="Add" onclick="addRow()"></td></tr>
+		</table>
+		</div>
+		<div id="datadisplay">
+		</div>
+	
+		<script>
+		
+		function gui2json(){
+			let first_name=document.getElementById('objfn').value;
+			let last_name=document.getElementById('objln').value;
+			let dob=document.getElementById('objdob').value;
+			let phone=document.getElementById('objphone').value;
+			
+			let user = {
+			  first_name: first_name,
+			  last_name: last_name,
+			  dob: dob,
+			  phone: phone
+			  };
+			  
+			let userJSON = JSON.stringify(user);
+			return userJSON;
+			alert(userJSON);
+		}
+		
+		function json2tablerow(userJSON) {
+		
+			obj=JSON.parse(userJSON); // input is a string
+			let tr = document.createElement('TR'); // create a row
+			for (x in obj) {
+				let td = document.createElement('TD'); // each property
+				td.appendChild(document.createTextNode(obj[x])); // each value of each property
+				tr.appendChild(td);
+			}
+			return tr;
+		}
+		
+		function addRow() {
+			let userJSON=gui2json();
+			let row=json2tablerow(userJSON);
+		    let table=document.getElementById('mytablebody');
+			table.appendChild(row);
+			
+		}
+		
+		function SetTable() {   
+		    let myTableDiv = document.getElementById("datadisplay");
+			let table=document.createElement('TABLE'); // creation of HTML code , notice you dont close the table !
+			table.setAttribute('id','mytable');
+			table.border='1';
+			table.style.borderCollapse='collapse';
+			let tableBody = document.createElement('TBODY');
+			tableBody.setAttribute("id",'mytablebody');
+			table.appendChild(tableBody);
+			myTableDiv.appendChild(table);
+		}
+			
+		SetTable();
+		
+		</script>
+	 
+		
+	</body>
+</html>
