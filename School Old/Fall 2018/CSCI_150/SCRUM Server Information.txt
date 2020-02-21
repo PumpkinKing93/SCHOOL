@@ -1,0 +1,5 @@
+SCRUM Server information
+
+MySQL Server
+root
+root
