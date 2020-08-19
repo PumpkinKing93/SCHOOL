@@ -1,2 +1,2 @@
-# FALL2019
+# SCHOOL
 School Repo for FSU Fall 2019
