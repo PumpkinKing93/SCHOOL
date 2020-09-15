@@ -21,7 +21,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.3",
     "mime": "^2.3.1",
-    "mongoose": "^4.12.3",
+    "mongoose": "^5.7.5",
     "nodemon": "^1.17.5",
     "original": "^1.0.2",
     "serve-favicon": "~2.4.5",
