@@ -1,8 +1,0 @@
-CSCI 156 8/24/2020
-https://www.youtube.com/watch?v=z7Ro03LjRoY&feature=youtu.be
-
-The Network Core
-- How is data transfered through the network?
- . Circuit switching
-	dedicated circuit for each call. similar to old phone systems.
- . Packet switching
