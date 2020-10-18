@@ -53,8 +53,8 @@ class QLearningAgent(ReinforcementAgent):
         """
 
         "*** YOUR CODE HERE ***"
-        # check if the states are in qvals and action in qvals
-        # question 6
+        "check if the states are in qvals and action in qvals"
+        " question 6"
         if state in self.qValues and action in self.qValues[state]:
             return self.qValues[state][action]
         return 0.0
@@ -82,7 +82,9 @@ class QLearningAgent(ReinforcementAgent):
         """
 
         "*** YOUR CODE HERE ***"
+        "get the qvalue given the state and action"
         def q(action): return self.getQValue(state, action)
+        "retunr the max of the possible actions"
         return max(self.getLegalActions(state), key=q, default=None)  
         "*** YOUR CODE HERE ***"
 
@@ -96,13 +98,14 @@ class QLearningAgent(ReinforcementAgent):
           HINT: You might want to use util.flipCoin(prob)
           HINT: To pick randomly from a list, use random.choice(list)
         """
-        LA = self.getLegalActions(state)
-        action = None
 
         "*** YOUR CODE HERE ***"
-        # use the flipcoin prob, make sure its in range
+        "use the flipcoin prob, make sure its in range"
         if util.flipCoin(1 - self.epsilon):
+            "return the qvalue"
             return self.computeActionFromQValues(state)
+
+        "return the randomly selected path"    
         return random.choice(self.getLegalActions(state))
         "*** YOUR CODE HERE ***"
 
@@ -116,9 +119,11 @@ class QLearningAgent(ReinforcementAgent):
         """
 
         "*** YOUR CODE HERE ***"
-        # make sure the state is in the qvalues list, otherwise set it to 0
+        "make sure the state is in the qvalues list, otherwise set it to 0"
         if state not in self.qValues:
+            "state wasnt in the list, so set it to 0 cant get to it."
             self.qValues[state] = {action: 0.0}
+            "set the qvalue based off the a * qval"
         self.qValues[state][action] = (1 - self.alpha) * self.getQValue(
             state, action) + self.alpha * (reward + self.discount * self.getValue(nextState))
         "*** YOUR CODE HERE ***"

@@ -45,8 +45,8 @@ def question3e():
 
 
 def question8():
-    answerEpsilon = None
-    answerLearningRate = None
+    answerEpsilon = "Does it matter whats here"
+    answerLearningRate = "doesnt matter at all."
     # return answerEpsilon, answerLearningRate
     # If not possible, return 'NOT POSSIBLE'
     return 'NOT POSSIBLE'

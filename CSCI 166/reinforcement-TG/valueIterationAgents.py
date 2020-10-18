@@ -61,16 +61,22 @@ class ValueIterationAgent(ValueEstimationAgent):
         self.values = util.Counter()  # A Counter is a dict with default 0
         self.runValueIteration()
 
-    def maxQ(self, s):
+    "get the max of the action and qs"
+    def Max(self, s):
+        "get the available actions"
         actions = self.mdp.getPossibleActions(s)
+        "get the q values"
         qs = (self.computeQValueFromValues(s, a) for a in actions)
+        "finally return the max"
         return max(qs, default=0)
 
     def runValueIteration(self):
+        "*** YOUR CODE HERE ***"
         self.values = util.Counter()
         states = self.mdp.getStates()
         for k in range(self.iterations):
-            self.values = util.Counter({s: self.maxQ(s) for s in states})
+            self.values = util.Counter({s: self.Max(s) for s in states})
+        "*** YOUR CODE HERE ***"
 
     def getValue(self, state):
         """
@@ -83,12 +89,16 @@ class ValueIterationAgent(ValueEstimationAgent):
           Compute the Q-value of action in state from the
           value function stored in self.values.
         """
-
-        def rewardIf(s, a, s_):
+        "*** YOUR CODE HERE ***"
+        "get the rewards from the given state"
+        def getReward(s, a, s_):
+            "this will return the reward + the y discount * the prev value"
             return self.mdp.getReward(s, a, s_) + self.discount*self.getValue(s_)
 
+        "what other states can i get to and whats the probability of gettign to them"
         statesAndProbs = self.mdp.getTransitionStatesAndProbs(state, action)
-        return sum(p * rewardIf(state, action, s) for s, p in statesAndProbs)
+        return sum(p * getReward(state, action, s) for s, p in statesAndProbs)
+        "*** YOUR CODE HERE ***"
 
     def computeActionFromValues(self, state):
         """
@@ -98,8 +108,12 @@ class ValueIterationAgent(ValueEstimationAgent):
           there are no legal actions, which is the case at the
           terminal state, you should return None.
         """
-        def key_fn(a): return self.computeQValueFromValues(state, a)
-        return max(self.mdp.getPossibleActions(state), key=key_fn, default=None)
+        "*** YOUR CODE HERE ***"
+        "get the q values possible."
+        def theKey(a): return self.computeQValueFromValues(state, a)
+        "then return the max given thos values"
+        return max(self.mdp.getPossibleActions(state), key=theKey, default=None)
+        "*** YOUR CODE HERE ***"
 
     def getPolicy(self, state):
         return self.computeActionFromValues(state)
@@ -138,23 +152,14 @@ class AsynchronousValueIterationAgent(ValueIterationAgent):
         """
         ValueIterationAgent.__init__(self, mdp, discount, iterations)
 
-    # definintion for cycle
-    # def cycle(iterable):
-    #     # cycle('ABCD') --> A B C D A B C D A B C D ...
-    #     saved = []
-    #     for element in iterable:
-    #         yield element
-    #         saved.append(element)
-    #     while saved:
-    #         for element in saved:
-    #               yield element
-
     def runValueIteration(self):
+        "*** YOUR CODE HERE ***"
         states = cycle(self.mdp.getStates())
         for i in range(self.iterations):
             state = next(states)
             if not self.mdp.isTerminal(state):
-                self.values[state] = self.maxQ(state)
+                self.values[state] = self.Max(state)
+        "*** YOUR CODE HERE ***"
 
 
 class PrioritizedSweepingValueIterationAgent(AsynchronousValueIterationAgent):
@@ -183,13 +188,14 @@ class PrioritizedSweepingValueIterationAgent(AsynchronousValueIterationAgent):
         return predecessors
 
     def runValueIteration(self):
+        "*** YOUR CODE HERE ***"
         predecessors = self.getStatePredecessors()
         queue = util.PriorityQueue()
 
         def isNotTerminal(s): return not self.mdp.isTerminal(s)
 
         for s in filter(isNotTerminal, self.mdp.getStates()):
-            diff = abs(self.values[s] - self.maxQ(s))
+            diff = abs(self.values[s] - self.Max(s))
             queue.push(s, -diff)
 
         for i in range(self.iterations):
@@ -197,8 +203,9 @@ class PrioritizedSweepingValueIterationAgent(AsynchronousValueIterationAgent):
                 continue
 
             s = queue.pop()
-            self.values[s] = self.maxQ(s)
+            self.values[s] = self.Max(s)
             for p in predecessors[s]:
-                diff = abs(self.values[p] - self.maxQ(p))
+                diff = abs(self.values[p] - self.Max(p))
                 if diff > self.theta:
                     queue.update(p, -diff)
+        "*** YOUR CODE HERE ***"
