@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body ng-app=""> <!-- no need to put a name all the time -->
+
+<form>
+  Select a meal:
+  <select ng-model="myVar">
+    <option value="">
+    <option value="quesa">Quesadilla
+    <option value="burr">Burrito
+    <option value="nachos">Chile Verde Nachos
+  </select>
+</form>
+
+<div ng-switch="myVar">
+  <div ng-switch-when="quesa">
+     <h1>Quesadilla</h1>
+     <p>Grilled flour tortilla wedges stuffed with cheese, onions, bell peppers, mushrooms, zucchini, tomatoes, choice of grilled chicken or carne asada and served with sour cream and guacamole</p>
+  </div>
+  <div ng-switch-when="burr">
+     <h1>Burrito</h1>
+     <p>A large flour tortilla, filled with choice of chile verde or chile con carne, and refried beans. then, topped with even more chile verde or chile con carne and melted jack cheese.</p>
+  </div>
+  <div ng-switch-when="nachos">
+     <h1>Chile Verde Nachos</h1>
+     <p>Chips smothered with chile verde, melted jack cheese, guacamole and sour cream.</p>
+  </div>
+</div>
+
+<p>The ng-switch directive hides and shows HTML sections depending on the value of the dropdown list.</p>
+
+</body>
+</html>
