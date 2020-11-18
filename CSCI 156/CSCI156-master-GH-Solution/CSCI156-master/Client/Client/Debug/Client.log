@@ -1,3 +1,1 @@
-﻿  main.cpp
-c:\users\seamu\desktop\156 project 1\client\client\main.cpp(10): warning C4326: return type of 'main' should be 'int' instead of 'void'
-  Client.vcxproj -> C:\Users\Seamu\Desktop\156 Project 1\Client\Debug\Client.exe
+﻿  Client.vcxproj -> C:\Users\tyler.gillette\Documents\school\CSCI 156\CSCI156-master-GH-Solution\CSCI156-master\Client\Debug\Client.exe

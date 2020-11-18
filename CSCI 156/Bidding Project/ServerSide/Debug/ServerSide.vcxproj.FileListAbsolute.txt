@@ -1,0 +1,2 @@
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide\Debug\ServerSide.exe
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide\Debug\ServerSide.pdb

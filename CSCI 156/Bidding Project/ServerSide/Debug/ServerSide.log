@@ -1,0 +1,7 @@
+﻿  ServerSide.cpp
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide\ServerSide.cpp(64,3): warning C4551: function call missing argument list
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide\ServerSide.cpp(69,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide\ServerSide.cpp(112,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide\ServerSide.cpp(135,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide\ServerSide.cpp(66): warning C4715: 'loadStoreData': not all control paths return a value
+  ServerSide.vcxproj -> C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide\Debug\ServerSide.exe
