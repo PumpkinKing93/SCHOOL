@@ -1,33 +1,29 @@
-// ClientSide.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <WS2tcpip.h>
 #include <string>
 
-
+//Only include once
 #pragma comment (lib, "ws2_32.lib")
 
 using namespace std;
 
-void main(int argc, char* argv[])
+void main(int argc, char *argv[])
 {
-	//pulled from MS tutorial
+	// start winsock
 	WSADATA data;
 	WORD version = MAKEWORD(2, 2);
-	int wsError = WSAStartup(version, &data);
-	if (wsError != 0)
+	int wsStart = WSAStartup(version, &data);
+	if (wsStart != 0)
 	{
-		cout << "Winsock Error..." << wsError << endl;
+		cout << "ERROR 1: Can't start." << wsStart << endl;
 	}
 
-	// Create a hint structure for the server
+	// hint for the server
 	sockaddr_in server;
 	int serverLength = sizeof(server);
-
-	//clear a block of memory (dest, len)
+	
+	//clear a spot in mem
 	ZeroMemory(&server, serverLength);
-
 	server.sin_family = AF_INET;
 	server.sin_port = htons(25001);
 	inet_pton(AF_INET, "127.0.0.1", &server.sin_addr);
@@ -35,37 +31,40 @@ void main(int argc, char* argv[])
 	// Socket Creation
 	SOCKET out = socket(AF_INET, SOCK_DGRAM, 0);
 
-	// Write to the socket
-	string s(argv[1]);
-	int sentData = sendto(out, s.c_str(), s.size() + 1, 0, (sockaddr*)&server, sizeof(server));
-
-
-	//pulled from MS tutorial
-
-	if (sentData == SOCKET_ERROR)
-	{
-		cout << "Why do you no work?!?!?" << WSAGetLastError() << endl;
-	}
+	// Write out to the socket
+	string s("Program Started");
+	int send = sendto(out, s.c_str(), s.size() + 1, 0, (sockaddr*)&server, sizeof(server));
 
 	char buf[1024];
+
+	if (send == SOCKET_ERROR)
+	{
+		cout << "ERROR 2: no work" << WSAGetLastError() << endl;
+	}
+
+	// submit a random bid price + %5-%20 percent of the items total price.
+	// Must be less than the total cost of the item
+	// The server should compare the bid price and update if higher and post the highest bid price
+
 	while (true)
 	{
-		//clear a block of memory (dest, len)
+		//clear a spot in mem
 		ZeroMemory(buf, 1024);
 
+		// wait for message
 		int bytesIn = recvfrom(out, buf, 1024, 0, (sockaddr*)&server, &serverLength);
 		if (bytesIn == SOCKET_ERROR)
 		{
-			cout << "Error when getting data from client" << WSAGetLastError() << endl;
+			cout << "ERROR 3: Not Getting Data." << WSAGetLastError() << endl;
 			continue;
 		}
 		char serverIp[256];
 
-		//clear a block of memory (dest, len)
+		//clear a spot in mem
 		ZeroMemory(serverIp, 256);
 		inet_ntop(AF_INET, &server.sin_addr, serverIp, 256);
 
-		cout << "Message received from " << serverIp << " : " << buf << endl;
+		cout << "Message from " << serverIp << " : " << buf << endl;
 	}
 
 	// Close the socket
@@ -74,14 +73,3 @@ void main(int argc, char* argv[])
 	//close Winsock
 	WSACleanup();
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

@@ -36,13 +36,16 @@ vector<Items> loadStoreData()
 		int itemPrice;
 
 		while (getline(file, line)) {
+			//get the first 4 char of the line
 			subLine = line.substr(0, 4);
-			if (subLine == "Items") {    //if the word is Item_
-				int itemIndex = 0;
+
+			//check that the first 4 char are the item
+			if (subLine == "Item") {    
+				int itemNum = 0;
 				istringstream iss(line);
 				while (iss >> word) {
-					theItems[itemIndex] = word;
-					itemIndex++;
+					theItems[itemNum] = word;
+					itemNum++;
 				}
 				itemDesc = theItems[0];
 				itemUnits = atoi(theItems[1].c_str());
@@ -103,6 +106,7 @@ void main()
 	SOCKET out = socket(AF_INET, SOCK_DGRAM, 0);
 	//pulled from MS tutorial
 
+
 	//send the items
 	//create a vector to hold the item data
 	vector<Items> items = loadStoreData();
@@ -148,7 +152,7 @@ void main()
 
 		inet_ntop(AF_INET, &client.sin_addr, clientIp, 256);
 
-		cout << "Message received from " << clientIp << " : " << buf << endl;
+		cout << "Received Message from " << clientIp << " : " << buf << endl;
 	}
 
 	//close socket

@@ -1,3 +1,3 @@
 ﻿  ClientSide.cpp
-C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ClientSide\ClientSide.cpp(14,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ClientSide\ClientSide.cpp(11,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
   ClientSide.vcxproj -> C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ClientSide\Debug\ClientSide.exe
