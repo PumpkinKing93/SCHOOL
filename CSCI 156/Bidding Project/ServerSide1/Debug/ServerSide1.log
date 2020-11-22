@@ -1,10 +1,7 @@
-﻿  Items.cpp
-  ServerSide1.cpp
+﻿  ServerSide1.cpp
 C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\ServerSide1.cpp(67,3): warning C4551: function call missing argument list
-C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\ServerSide1.cpp(72,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\ServerSide1.cpp(116,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\ServerSide1.cpp(139,22): warning C4018: '<': signed/unsigned mismatch
-  Store.cpp
-  Generating Code...
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\ServerSide1.cpp(81,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\ServerSide1.cpp(127,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\ServerSide1.cpp(150,22): warning C4018: '<': signed/unsigned mismatch
 C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\ServerSide1.cpp(69): warning C4715: 'loadStoreData': not all control paths return a value
   ServerSide1.vcxproj -> C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\Debug\ServerSide1.exe

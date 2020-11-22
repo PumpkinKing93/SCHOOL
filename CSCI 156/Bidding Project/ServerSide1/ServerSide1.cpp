@@ -74,6 +74,7 @@ vector<Items> BiddingAgent(vector<Items> itemList) {
 	// Must be less than the total cost of the item
 	// The server should compare the bid price and update if higher and post the highest bid price
 
+	return itemList;
 }
 
 void main()
@@ -125,7 +126,7 @@ void main()
 	//loop through and add the desc, unit and price of each of the input file items to a string to send
 	for (int i = 0; i < items.size(); i++)
 	{
-		s.push_back(items[i].getDescription() + ", " + to_string(items[i].getUnits()) + ", " + to_string(items[i].getPrice()));
+		s.push_back(items[i].getDescription() + ", " + to_string(items[i].getUnits())); //+ ", " + to_string(items[i].getPrice())
 	}
 
 
@@ -136,13 +137,13 @@ void main()
 
 
 		int bytesIn = recvfrom(in, buf, 1024, 0, (sockaddr*)&client, &clientLength);
-
 		//check that the return data doesnt contain an error
 		if (bytesIn == SOCKET_ERROR)
 		{
 			cout << "Error when getting data from client" << WSAGetLastError() << endl;
 			continue;
 		}
+
 		//if it didnt contain an error, send each piece of data
 		else
 		{
@@ -163,6 +164,9 @@ void main()
 		inet_ntop(AF_INET, &client.sin_addr, clientIp, 256);
 
 		cout << "Received Message from " << clientIp << " : " << buf << endl;
+
+		bytesIn = recvfrom(in, buf, 1024, 0, (sockaddr*)&client, &clientLength);
+
 	}
 
 	//close socket
