@@ -131,6 +131,7 @@ void main(int argc, char *argv[])
 
 
 		//client will submit the bid info to the server.
+		//HOW DO I GET THIS INFO TO THE SERVER????
 		if (availableItemList[i].getAvailable() > 0 && availableItemList.size() > i) {
 			cout << "Loop " << i << endl;
 
