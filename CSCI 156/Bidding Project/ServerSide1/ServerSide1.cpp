@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <WS2tcpip.h>
+// #include sys.socket.h
 #include <string>
 #include <cstdlib>
 #include <string>
