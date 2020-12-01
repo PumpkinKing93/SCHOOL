@@ -1,0 +1,222 @@
+\documentclass[12pt,onecolumn]{article}
+\usepackage{times}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{rotating}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{rotating}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabularx}
+
+\usepackage{makecell}
+
+\usepackage{cite}
+%\usepackage[sort&compress]{natbib}
+%\usepackage{natbib}
+%\setlength{\bibsep}{0.0pt}
+
+\begin{document}
+
+\begin{titlepage}
+   \vspace*{\stretch{1.0}}
+   \begin{center}
+      \LARGE\textbf{Project Title}\\
+			\vspace*{\stretch{1.0}}
+      \large{Student Name} \\
+			\large\textit{Month Year} \\
+			\vspace*{\stretch{1.0}}
+			\includegraphics[width=6cm]{csufresno.png} \\
+			\vspace*{\stretch{1.0}}
+			\large{Department of Computer Science}\\
+			\large{College of Science and Mathematics}\\
+			\large{Fresno State}\\
+   \end{center}
+   \vspace*{\stretch{2.0}}
+\end{titlepage}
+
+\newpage
+\pagenumbering{Roman} 
+
+\begin{center}
+\LARGE\textbf{Project Title}\\
+\vspace*{\stretch{0.5}}
+\large{Student Name}\\
+\large\textit{Month Year}\\
+\vspace*{\stretch{0.5}}
+\large{Department of Computer Science}\\
+\large{California State University, Fresno}\\
+\large{Fresno, CA 93740}\\
+\vspace*{\stretch{0.5}}
+\large{Project Advisor: Adviser Name}\\
+\large\textit{Submitted in partial fulfillment of the requirements\\ for the degree of \textbf{Bachelor of Science}}
+\end{center}
+
+\newpage
+
+% Table of contents
+\tableofcontents
+\newpage
+% List of figures
+\listoffigures
+\newpage
+% List of tables
+\listoftables
+\newpage
+\setcounter{page}{1}
+\renewcommand{\thepage}{\arabic{page}}
+
+
+\subsection*{Abstract}
+
+blablabla blablabla blablabla blablabla blablabla blablabla
+blablabla blablabla blablabla blablabla blablabla blablabla
+blablabla blablabla blablabla blablabla blablabla blablabla
+blablabla blablabla blablabla blablabla blablabla blablabla
+
+\newpage
+
+\subsection*{Plagiarism Statement}
+
+I declare that this is all my own work and does not contain unreferenced material copied from any other source. I have read the University's policy on plagiarism and understand the definition of plagiarism. If it is shown that material has been plagiarised, or I have otherwise attempted to obtain an unfair advantage for myself, I understand that I may face sanctions in accordance with the policies and procedures of the University. A failing grade may be awarded and the reason for that mark will be recorded on my file.\\
+
+I confirm that the Originality Score provided by TurnItIn for this report is: ~~~~~~~\%\\
+
+\subsection*{Acknowledgment}
+
+I would like to extend my sincere thanks to all my family, and those who have helped me throughout my entire degree. 
+I would also like to thank my supervisor Dr. X for all of his support and guidance throughout the semester; the assistance he has provided has been invaluable to my learning experience at Fresno State.
+
+\newpage
+\section{Introduction}
+
+\subsection{Aims and objectives}
+
+The main aim of this project is to bla bla bla\\
+In order to achieve this aim, it is needed to do bla bla bla\\
+This project is important because bla bla bla\\
+The expected results of the projects are bla bla bla\\
+
+\subsection{Outline}
+ 
+The remaining sections of this report are organized as follows: The state of the art related to bla bla is described in Section~\ref{sec:soa}. The analysis of the project is detailed in Section~\ref{sec:analysis}. The methods are given in Section~\ref{sec:methods} and the information related to their implementation is detailed in Section~\ref{sec:implementation}. The results are presented in Section~\ref{sec:results} and discussed in Section~\ref{sec:discussion}. Finally, the main contributions and results of the project are summarized in Section~\ref{sec:conclusion}.
+
+\newpage
+\section{Related works}
+\label{sec:soa}
+% Literature review / State of the art
+
+In~\cite{knorr2000}, bla bla bla.
+It has been found that bla bla bla~\cite{breunig2000}.
+
+\newpage
+\section{Analysis}
+\label{sec:analysis}
+
+\subsection{Problem Statement}
+
+\subsection{Proposed solution}
+
+\subsection{Requirements}
+
+\subsubsection{Functional requirements}
+
+\subsubsection{Non-Functional requirements}
+
+\subsubsection{Software requirements}
+
+\subsubsection{Hardware requirements}
+
+\subsection{Project management}
+
+% Gantt chart.
+The project has been organized following the timeline depicted in Table.\ref{table:timeline}.
+
+\begin{table}[!tb]
+\caption{Timeline for the CSci298 project.}
+\small
+\label{table:timeline}
+\centering
+\begin{tabular}{|l|ll|}
+\hline
+Week & Objectives & Comments \\	\hline
+0  &     &		\\
+1  &     &		\\
+2  &     &		\\
+3  &     &		\\
+4  &     &		\\
+5  &     &		\\
+6  &     &		\\
+7  &     &		\\
+8  &     &		\\
+9  &     &		\\
+10  &     &		\\
+11  &     &		\\
+12  &     &		\\
+Spring break  &     &		\\
+13  &     &		\\
+14  &     &		\\
+15  &     &		\\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+\section{Methods}
+\label{sec:methods}
+
+Detailed Description of the algorithms and methods...
+
+
+Each figure is referenced and described in the text. Fig.~\ref{fig:01} depicts Mickey Mouse.
+Each table is referenced and described in the text. Table~\ref{table:01} depicts Mickey Mouse.
+
+\begin{figure}[h]
+\centering % each figure is centered
+\includegraphics[width=0.5\columnwidth]{mickey.png}
+\caption{The caption is under the figure. Each figure has a caption that ends with a point.}
+\label{fig:01}
+\end{figure}
+
+\begin{table}[h]
+\caption{The caption is on top of the table. Each table has a caption that ends with a point.}
+\centering
+\begin{tabular}{|l|cc|}
+\hline
+Method & \multicolumn{2}{c}{Performance (in \%)}  \\	\hline
+   & Mean & SD \\
+A  &  97.31   &	5.34	\\
+A  &  98.31   &	3.12	\\
+\hline
+\end{tabular}
+\label{table:01}
+\end{table}
+
+\newpage
+\section{Implementation}
+\label{sec:implementation}
+% Information related to the implementation of the methods
+
+\newpage
+\section{Results and evaluation}
+\label{sec:results}
+
+\newpage
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Future developments}
+
+\subsection{Personal reflection}
+
+\newpage
+\section{Conclusion}
+\label{sec:conclusion}
+
+\newpage
+\bibliographystyle{IEEEtranS}
+\bibliography{references}
+
+\end{document}

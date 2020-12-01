@@ -1,0 +1,18 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf400
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs26 \cf0 \expnd0\expndtw0\kerning0
+California State University, Fresno (commonly referred to as Fresno State) is a public university in Fresno, California. It is one of 23 campuses within the California State University system. The university had a Fall 2016 enrollment of 24,405 students. It offers bachelor's degrees in 60 areas of study, 45 master's degrees, 3 doctoral degrees, 12 certificates of advanced study, and 2 different teaching credentials.\
+\
+The university's unique facilities include an on-campus planetarium, on-campus raisin and wine grape vineyards, and a commercial winery, where student-made wines have won over 300 awards since 1997. Members of Fresno State's nationally ranked Top 10 Equestrian Team have the option of housing their horses on campus, next to indoor and outdoor arenas. Fresno State has a 50,000-square-foot (4,600 m2) Student Recreation Center and the third-largest library, in terms of square footage, in the California State University system. The university is classified as a doctoral university with moderate research activity in the Carnegie Classification, as of the February 1, 2016 update.\
+\
+Fresno State was founded as the Fresno State Normal School in 1911 with Charles Lourie McLane as its first president. The original campus was what is now Fresno City College. In 1956, Fresno State moved its campus to its present location in the northeast part of the city and FCC bought the old campus and moved back in. It became Fresno State College in 1949, when it was authorized to grant bachelor's degrees. It became a charter institution of the California State University System in 1961. In 1972 the name was officially changed to California State University, Fresno.\
+\
+The greater campus extends from Bulldog Stadium on the west boundary to Highway 168 on the east side. The University Agricultural Laboratory designates the northern boundary of the campus, while Shaw Avenue designates the southern edge.\
+\
+The 388 acres main campus features more than 46 traditional and modern buildings. An additional 34 structures are on the 1,011 acre University Agricultural Laboratory (The "Farm"), used for agronomic and horticulture crops, equine, swine, beef, dairy, poultry, and sheep units as well as several hundred acres of cattle rangeland. Fresno State was officially designated as an arboretum in 1979 and now has more than 3200 trees on campus. Fresno State operates the first university-based commercial winery in the United States.}
