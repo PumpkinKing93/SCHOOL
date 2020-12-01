@@ -14,6 +14,7 @@
 
 #pragma comment (lib, "ws2_32.lib")
 
+#define PORT "25001"
 using namespace std;
 
 vector<Items> loadStoreData()
@@ -98,6 +99,7 @@ void main()
 	socketAddr.sin_addr.S_un.S_addr = ADDR_ANY;
 	socketAddr.sin_family = AF_INET;
 	socketAddr.sin_port = htons(25001); // convert from little to big endian
+	cout << "IP address: " << socketAddr.sin_port << endl;
 
 	if (bind(in, (sockaddr*)&socketAddr, sizeof(socketAddr)) == SOCKET_ERROR)
 	{

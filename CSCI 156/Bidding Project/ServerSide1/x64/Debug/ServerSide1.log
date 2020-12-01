@@ -1,0 +1,6 @@
+﻿  ServerSide1.cpp
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\ServerSide1.cpp(69,3): warning C4551: function call missing argument list
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\ServerSide1.cpp(83,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\ServerSide1.cpp(155,100): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\ServerSide1.cpp(71): warning C4715: 'loadStoreData': not all control paths return a value
+  ServerSide1.vcxproj -> C:\Users\tyler.gillette\Documents\school\CSCI 156\Bidding Project\ServerSide1\x64\Debug\ServerSide1.exe
