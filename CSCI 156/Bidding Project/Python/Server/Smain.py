@@ -20,6 +20,7 @@ from items import *
 
 host = '192.168.252.208'
 port = 25000
+items = []
 
 serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serv.bind((host, port))
@@ -29,7 +30,8 @@ print('\n', "Waiting For Client", '\n')
 s_items = ""
 while True:
     conn, addr = serv.accept()
-    from_client = 'Client: '
+    # from_client = 'Client: '
+    from_client = ' '
 
     while True:
         data = conn.recv(4096)
@@ -37,14 +39,42 @@ while True:
         if not data:
             break
 
-        from_client = from_client + data.decode(sys.stdout.encoding)
+        from_client = from_client + data.decode()
 
-        print(from_client)
+        if (len(items) == 0) & (len(data) > 0) & (data.decode()[0] == '['):
+            # nData = json.loads(from_client)
+            # items.extend(from_client)
 
-        s_items = json.dumps(item3)
-        conn.send(s_items.encode())
+            newData = data
+            newData = json.loads(newData)
+            items.extend(newData)
+            print("from_client: ", newData, '\n')
 
-        # print("list of items: ", s_items, '\n')
+        # if len(items) > 0:
+        #     data = data.decode()
 
+        print("Items: ", items)
+        print("from_client: ", from_client, '\n')
+
+        if (len(items) == 0):
+            s_items = json.dumps(item3)
+            conn.send(s_items.encode())
+
+        if (len(items) > 0):
+            for index in range(len(items)):
+                for key in items[index]:
+                    print("items: ", items[index][key])
+                    print("items3: ", item3[index][key])
+
+                    # if (items[index][key] > item3[index][key]):
+                    #     print("LESS THAN")
+                    # else:
+                    #     print("EQUAL OR MORE THAN")
+
+            # print("list of items: ", s_items, '\n')
+
+            # check if the bid received is equal or greater than price
+            # need to send back current bid
+            # mark item sold, remove from list
     conn.close()
     print('client disconnected', '\n')

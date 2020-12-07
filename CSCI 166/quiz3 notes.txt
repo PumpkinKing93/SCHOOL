@@ -1,0 +1,139 @@
+
+Q1 and Q2
+
+Q1
+B(0) = 0.9B(0) + 0.8B(1)	-Eq(1)
+B(1) = 0.1B(0) + 0.2B(1)	-Eq(2)
+
+0.1B(0) = 0.8B(1)  - Eq(3) From Eq(1)
+
+1/8B(0) = B(1)	   -Eq(4) From Eq(2)
+
+B(0) + B(1) = 1	   -Probabilities need to sum to 1
+
+B(0) + 1/8B(0) = 1  -plug in value for B(1) from Eq(4)
+
+9/8B(0) = 1
+
+B(0) = 8/9
+
+Q2
+1 - B(0) = 1/9 = B(1)
+
+Q3 and Q4
+
+B(0) = .1
+B(1) = .9	- Given in first table P(X) at t = 0
+
+B1(0) = 0.9B(0) + 0.8B(1)
+B1(1) = 0.1B(0) + 0.2B(1)
+
+
+B1(0) = .9(.1) + .8(.9) = .09 + .72 = .81
+B1(1) = .1(.1) + .2(.9) = .01 + .18 = .19
+
+
+Q5 and Q6
+
+B1(0) = .81
+B1(1) = .19
+
+P(E=1|0) = .1
+P(E=1|1) = .4
+
+B1(0) = B1(0) * .1 = .81 * .1 = .081/.157 = .5159
+B1(1) = B1(1) * .4 = .19 * .4 = .076/.157 = .484076	(.157 is normalization, = .081+.076)
+
+Q7 and Q8
+
+P(X'=0|0) = .9
+P(X'=0|1) = .8
+P(X'=1|0) = .1
+P(X'=1|1) = .2
+
+Buckets of:
+for X = 0
+  0     1
+[   ] [   ]
+0-.9  .9-1.0
+
+for X = 1
+  1     0
+[   ] [   ]
+0-.2  .2-1.0
+
+particle #1 with old value 0 and random number 0.45.
+
+for X = 0
+  0     1
+[   ] [   ]
+0-.9  .9-1.0
+
+fits in bucket 0. New value is 0.
+
+
+particle #2 with old value 1 and random number 0.10
+
+for X = 1
+  1     0
+[   ] [   ]
+0-.2  .2-1.0
+
+fits in bucket 1. new value is 1.
+
+
+particle #3 with old value 0 and random number 0.50
+
+for X = 0
+  0     1
+[   ] [   ]
+0-.9  .9-1.0
+
+fits in bucket 0. new value is 0.
+
+
+particle #4 with old value 0 and random number 0.95
+
+for X = 0
+  0     1
+[   ] [   ]
+0-.9  .9-1.0
+
+fits in bucket 1. new value is 1.
+
+
+particle #5 with old value 1 and random number 0.85
+
+for X = 1
+  1     0
+[   ] [   ]
+0-.2  .2-1.0
+
+fits in bucket 0. new value is 0.
+
+
+Q9 and Q10 (Unsure of these)
+
+From previous problem, Particle 1 has new value of 0
+Particle 2 new value of 1
+Particle 3 new value of 0
+Particle 4 new value of 1
+Particle 5 new value of 0
+
+Given the table with P(E=1|X)
+0 has a weight of 0.1 and 1 has a weight of 0.4
+
+Taking our population sample,
+Particle 1 has a weight of 0.1
+Particle 2 has a weight of 0.4
+Particle 3 has a weight of 0.1
+Particle 4 has a weight of 0.4
+Particle 5 has a weight of 0.1
+
+
+Normalizing the weights, 0.1 + 0.4 + 0.1 + 0.4 + 0.1 = 1.1
+
+For particle 1, 0.1 / 1.1 = .091
+
+For particle 5, 0.1 / 1.1 = .091
+

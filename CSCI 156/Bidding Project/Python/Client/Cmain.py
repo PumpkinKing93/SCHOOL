@@ -2,6 +2,7 @@ import socket
 import json
 import random
 from clearList import *
+from bidder import *
 
 # In this individual project, you will implement a bidding system (similar to eBay) in a
 # networked environment involving at least two computers, or in a Linux/UNIX server.
@@ -31,9 +32,10 @@ if len(items) == 0:
     client.send("What do you have to buy?".encode())
     from_server = client.recv(4096)
 
-    data = from_server
-    data = json.loads(data)
-    items.extend(data)
+    if len(from_server) > 0:
+        data = from_server
+        data = json.loads(data)
+        items.extend(data)
 
     clearList(items)
 
@@ -42,14 +44,16 @@ if len(items) == 0:
 
 
 if len(items) > 0:
-    # for k, v in items.items():
-    #     if v is not None:
-    #         items[k] = items[k] + random.randint(1, 1001)
+    bidder(items)
+    print("bids: ", items, '\n')
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect((host, port))
-    client.send("test back".encode())
+
+    s_items = json.dumps(items)
+    client.send(s_items.encode())
     from_server = client.recv(4096)
+    print("Response: ", from_server)
     client.close()
 
 
