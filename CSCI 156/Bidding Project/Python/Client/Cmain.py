@@ -21,9 +21,11 @@ from bidder import *
 
 print("Connecting to Server.", '\n')
 
-host = '192.168.252.208'
+# host = '192.168.252.208'
+host = '192.168.86.39'
 port = 25000
 items = []
+curBid = []
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect((host, port))
@@ -37,24 +39,37 @@ if len(items) == 0:
         data = json.loads(data)
         items.extend(data)
 
-    clearList(items)
+    if len(curBid) == 0:    
+        clearList(items)
+        curBid = items
+
 
     print("Items: ", items, '\n')
     client.close()
-
+    # i=1
+    # while i < 3:
+    #     bidder(items)
+    #     print("bids: ", items, '\n')
+    #     i=i+1
 
 if len(items) > 0:
-    bidder(items)
-    print("bids: ", items, '\n')
+    for index in range(len(items)):
+        SoldOut = all(value == -1 for value in items[index].values())
+        while(not SoldOut):
+            # SoldOut = all(value == -1 for value in items[index].values())
+            bidder(items)
+            
+            print("bids: ", items, '\n')
 
-    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client.connect((host, port))
+            client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            client.connect((host, port))
 
-    s_items = json.dumps(items)
-    client.send(s_items.encode())
-    from_server = client.recv(4096)
-    print("Response: ", from_server)
-    client.close()
+            s_items = json.dumps(items)
+            client.send(s_items.encode())
+            from_server = client.recv(4096)
+
+            print("curBid: ", from_server)
+            client.close()
 
 
 # client.send("What do you have to buy?".encode())

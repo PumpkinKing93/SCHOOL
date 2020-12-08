@@ -12,5 +12,9 @@ item3 = [
      },
     {'Name': 'PS5',
      'Cost': '499'
+     },
+    {'Name': 'Audi',
+     'Cost': '250'
      }
 ]
+
