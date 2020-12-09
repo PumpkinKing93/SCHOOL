@@ -1,8 +1,3 @@
-item1 = {'iPhone': '999'}
-item2 = {'iPhone': '999',
-         'Xbox': '399',
-         'PS5': '499'}
-
 item3 = [
     {'Name': 'iPhone',
      'Cost': '999'
@@ -18,3 +13,29 @@ item3 = [
      }
 ]
 
+restock = [
+    {'Name': 'iPhone',
+     'Cost': '999'
+     },
+    {'Name': 'Xbox',
+     'Cost': '399'
+     },
+    {'Name': 'PS5',
+     'Cost': '499'
+     },
+    {'Name': 'Subaru',
+     'Cost': '150'
+     },
+    {'Name': 'Toys',
+     'Cost': '20'
+     },
+    {'Name': 'RC Car',
+     'Cost': '15'
+     },
+    {'Name': 'Android',
+     'Cost': '50'
+     },
+    {'Name': 'Headphones',
+     'Cost': '15'
+     }
+]

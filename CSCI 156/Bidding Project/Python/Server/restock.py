@@ -17,7 +17,10 @@ restock = [
     {'Name': 'RC Car',
      'Cost': '15'
      },
-    {'Name': 'Xbox',
-     'Cost': '399'
+    {'Name': 'Android',
+     'Cost': '50'
+     },
+    {'Name': 'Headphones',
+     'Cost': '15'
      }
 ]

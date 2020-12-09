@@ -17,8 +17,8 @@ from items import *
 # Eventually, all clients except one should see the current bid price is higher than its pre-set
 # highest price to bid. The winner will be the one with the highest pre-set price for that item.
 
-# host = '192.168.252.208'
-host = '192.168.86.39'
+host = '192.168.252.208'
+# host = '192.168.86.39'
 port = 25000
 items = []
 curBid = []
@@ -34,9 +34,10 @@ while True:
     conn, addr = serv.accept()
     # from_client = 'Client: '
     from_client = ' '
-
     while True:
         data = conn.recv(4096)
+
+        SoldOut = False
 
         if not data:
             break
@@ -50,7 +51,6 @@ while True:
             items.extend(newData)
             # print("from_client: ", newData, '\n')
 
-        
         print("from_client: ", from_client, '\n')
 
         if (len(items) == 0):
@@ -58,7 +58,7 @@ while True:
             conn.send(s_items.encode())
             origPrice = item3
 
-        if (len(items) > 0):
+        if (len(items) > 0) & (SoldOut == False):
             for index in range(len(origPrice)):
                 # for key in items[index]:
                 # print("items: ", type(items[index]['Cost']))
@@ -79,9 +79,9 @@ while True:
                     # print("Current Bid: ", curBid)
                     exit
 
-                if (items[index]['Cost'] > curBid[index]['Cost']) & items[index]['Cost'] != -1:
+                if (items[index]['Cost'] > curBid[index]['Cost']) & (items[index]['Cost'] != -1):
                     curBid[index]['Cost'] = items[index]['Cost']
-                    print("Current Bid1: ", curBid)
+
                     exit
 
                 if (curBid[index]['Cost'] == -1):
@@ -95,21 +95,29 @@ while True:
 
                     exit
 
-            SoldOut = all(value == -1 for value in curBid[index].values())
+                # for index in range(len(origPrice)):
+                #     if origPrice[index]['Cost'] == -1:
+                #         SoldOut = True
+                #         break
+                for index in range(len(origPrice)):
+                    res = [sub['Cost'] for sub in curBid]
+                    if sum(res) == -len(items):
+                        SoldOut = True
+                        print("how many sold", -sum(res))
+                        break
+            print("Current Bid: ", curBid, '\n')
+            print("OrigPrice: ",  origPrice, '\n')
+            print("Current Bid: ", items, '\n', '\n')
 
-            if (not SoldOut):
-                s_items = json.dumps(curBid)
-                conn.send(s_items.encode())
-            else:
-                print("Sold out: ", SoldOut)
-                conn.close()
+            s_items = json.dumps(curBid)
+            conn.send(s_items.encode())
 
+            # if (SoldOut == False):
+            #     s_items = json.dumps(curBid)
+            #     conn.send(s_items.encode())
+            # else:
+            #     print("Sold out: ", SoldOut)
+            #     break
 
-
-            # print("list of items: ", s_items, '\n')
-
-            # check if the bid received is equal or greater than price
-            # need to send back current bid
-            # mark item sold, remove from list
     conn.close()
     print('client disconnected', '\n')

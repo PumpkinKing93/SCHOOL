@@ -21,8 +21,8 @@ from bidder import *
 
 print("Connecting to Server.", '\n')
 
-# host = '192.168.252.208'
-host = '192.168.86.39'
+host = '192.168.252.208'
+# host = '192.168.86.39'
 port = 25000
 items = []
 curBid = []
@@ -33,16 +33,15 @@ client.connect((host, port))
 if len(items) == 0:
     client.send("What do you have to buy?".encode())
     from_server = client.recv(4096)
-
+    SoldOut = False
     if len(from_server) > 0:
         data = from_server
         data = json.loads(data)
         items.extend(data)
 
-    if len(curBid) == 0:    
+    if len(curBid) == 0:
         clearList(items)
         curBid = items
-
 
     print("Items: ", items, '\n')
     client.close()
@@ -54,11 +53,14 @@ if len(items) == 0:
 
 if len(items) > 0:
     for index in range(len(items)):
-        SoldOut = all(value == -1 for value in items[index].values())
-        while(not SoldOut):
-            # SoldOut = all(value == -1 for value in items[index].values())
-            bidder(items)
-            
+        while(SoldOut == False):
+            for index in range(len(curBid)):
+                res = [sub['Cost'] for sub in curBid]
+                if sum(res) == -len(items):
+                    SoldOut = True
+                    print("how many sold", -sum(res))
+                    break
+
             print("bids: ", items, '\n')
 
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -68,7 +70,18 @@ if len(items) > 0:
             client.send(s_items.encode())
             from_server = client.recv(4096)
 
-            print("curBid: ", from_server)
+            # res = [sub['Cost'] for sub in curBid]
+            # print("The values corresponding to key : ", str(res))
+            # print("The values corresponding to key : ", sum(res))
+
+            curBid = []
+            d = from_server
+            d = json.loads(d)
+            curBid.extend(d)
+            print("curBid: ", curBid)
+
+            bidder(items, curBid)
+
             client.close()
 
 
@@ -78,5 +91,6 @@ if len(items) > 0:
 
 
 client.close()
+print("SoldOut: ", SoldOut)
 
 # print(from_server)
