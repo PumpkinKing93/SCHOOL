@@ -26,7 +26,7 @@
     "original": "^1.0.2",
     "serve-favicon": "~2.4.5",
     "trunks-log": "^2.0.2",
-    "url-parse": "^1.4.3",
+    "url-parse": "^1.5.2",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.19"
